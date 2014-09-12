@@ -2,6 +2,7 @@
 @light: #DDDDDD;
 @lightest: #FFFFFF;
 @default-spacing: 15px;
+@element-width: 400px;
 
 body {
     background: @dark;
@@ -17,13 +18,14 @@ body {
         background: white;
         border-radius: 50%;
         box-shadow: inset 0px 2px 4px rgba(0,0,0,0.2);
-        max-width: 400px;
+        max-width: @element-width;
         margin: 0 auto;
     }
     
     h1 {
         font-family: 'Playball', cursive;
         color: @lightest;
+        text-decoration: underline;
     }
     
     img {
@@ -38,4 +40,24 @@ footer {
         color: @lightest;
         &:hover{ color: @lightest; }
     }
+}
+
+.button-row {
+    width: 203px;
+    margin: 0 auto;
+    padding: @default-spacing 0;
+    .btn-twist {
+        margin-right: 20px;
+        font-size: 60px;
+        text-align: center;
+        cursor: pointer;
+        color:#ffffff;
+        transition: all 400ms ease-in-out;
+        &:last-child { margin-right: 0; }
+        &:hover { transition: all 400ms ease-in-out; }
+        &.btn-love:hover{ color: #157715; }
+        &.btn-soso:hover{ color: #be841c; }
+        &.btn-hate:hover{ color: #ac1c1c; }
+    }
+    
 }

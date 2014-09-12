@@ -16,6 +16,7 @@ body {
 .twist-wrapper h1 {
   font-family: 'Playball', cursive;
   color: #ffffff;
+  text-decoration: underline;
 }
 .twist-wrapper img {
   margin: 0 auto;
@@ -29,4 +30,32 @@ footer a {
 }
 footer a:hover {
   color: #ffffff;
+}
+.button-row {
+  width: 203px;
+  margin: 0 auto;
+  padding: 15px 0;
+}
+.button-row .btn-twist {
+  margin-right: 20px;
+  font-size: 60px;
+  text-align: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: all 400ms ease-in-out;
+}
+.button-row .btn-twist:last-child {
+  margin-right: 0;
+}
+.button-row .btn-twist:hover {
+  transition: all 400ms ease-in-out;
+}
+.button-row .btn-twist.btn-love:hover {
+  color: #157715;
+}
+.button-row .btn-twist.btn-soso:hover {
+  color: #be841c;
+}
+.button-row .btn-twist.btn-hate:hover {
+  color: #ac1c1c;
 }

@@ -44,13 +44,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <script id="twist-template" type="text/x-handlebars-template">
                 {{#twists}}
-                <div class="col-md-3">
-                    <div class="twist-wrapper" id="{{id}}-twist">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="twist-wrapper" id="{{id}}">
+                        <h1 class="text-center">{{name}}</h1>
                         <div class="image-wrapper">
                             <img src="{{imageUrl}}" class="img-responsive img-circle img-shadow" alt="{{name}}">
                         </div>
-                        <h1 class="text-center">{{name}}</h1>
-                        <p >{{loves}}</p>
+                        <div class="row button-row">
+                            <a class="btn-twist btn-love text-left"   data-value="3" data-id="{{id}}"><i class="fa fa-smile-o"></i></a>
+                            <a class="btn-twist btn-soso text-center" data-value="2" data-id="{{id}}"><i class="fa fa-meh-o"></i></a>
+                            <a class="btn-twist btn-hate text-right"  data-value="1" data-id="{{id}}"><i class="fa fa-frown-o"></i></a>
+                        </div>
                     </div>
                 </div>
                 {{/twists}}
@@ -85,15 +89,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         var twistTemplate = Handlebars.compile( $("#twist-template").html() );
         
         $.getJSON( "http://twistrating.apiary-mock.com/twists", function(data) {
-            var twistData = data
+            var twistData = data;
             $("#twist-template-output").html(twistTemplate(twistData));
+            $(".btn-twist").click(function() {
+                var id = $(this).data("id");
+                var rating = $(this).data("value");
+                $.ajax({
+                  url: "http://twistrating.apiary-mock.com/twists",
+                  type: "POST",
+                  data: JSON.stringify({ "id" : id, "rating" : rating } ),
+                  contentType:"application/json; charset=utf-8",
+                  dataType:"json",
+                  success: function(){
+                    //todo?
+                  }
+                });
+            });
         })
         .done(function() {
             console.log("Lastet ned twist fra APIet");
         })
         .fail(function() {
-            alert( "Fant dessverre ingen twist ... :/" );
+            alert( "Fant ingen twist i APIet... :/" );
         });
+        
+        
         
     </script>
     
