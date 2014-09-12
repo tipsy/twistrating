@@ -44,9 +44,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
             <script id="twist-template" type="text/x-handlebars-template">
                 {{#twists}}
-                <div class="col-md-4">
-                    <div class="twist-wrapper">
-                        <img src="{{imgurl}}" class="img-responsive img-circle img-shadow" alt="{{name}}"> 
+                <div class="col-md-3">
+                    <div class="twist-wrapper" id="{{id}}-twist">
+                        <div class="image-wrapper">
+                            <img src="{{imgurl}}" class="img-responsive img-circle img-shadow" alt="{{name}}">
+                        </div>
                         <h1 class="text-center">{{name}}</h1>
                         <p >{{loves}}</p>
                     </div>
@@ -78,43 +80,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-     
     
     <script>
-        var twistTemplate = Handlebars.compile( $("#twist-template").html() );   
-        var twistData = { twists: [
-
-          {
-              name:     'Kokos', 
-              loves:    '42',
-              likes:    '72',
-              meh:      '52',
-              dislikes: '32',
-              hates:    '12',
-              imgurl:   'img/kokos.jpg'
-          },
-
-          {
-              name:     'Daim', 
-              loves:    '42',
-              likes:    '72',
-              meh:      '52',
-              dislikes: '32',
-              hates:    '12',
-              imgurl:   'img/daim.jpg'
-          }, 
-            
-          {
-              name:     'Marsipan', 
-              loves:    '42',
-              likes:    '72',
-              meh:      '52',
-              dislikes: '32',
-              hates:    '12',
-              imgurl:   'img/marsipan.jpg'
-          }
         
-        ]};
+        var twistData;
+        
+        $.getJSON( "http://twistrating.apiary-mock.com/twists", function(data) {
+            var twistData = data;
+        })
+        .done(function() {
+            console.log("Lastet ned twist fra APIet");
+        })
+        .fail(function() {
+            alert( "Fant dessverre ingen twist ... :/" );
+        });
+        
+        var twistTemplate = Handlebars.compile( $("#twist-template").html() );
 
         $("#twist-template-output").html(twistTemplate(twistData));
         

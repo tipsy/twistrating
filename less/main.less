@@ -6,13 +6,24 @@
 body {
     background: @dark;
     color: @light;
+    max-width: 1600px;
+    margin: 0 auto;
 }
 
 .twist-wrapper {
+    
+    .image-wrapper {
+        padding: @default-spacing;
+        background: white;
+        border-radius: 50%;
+        box-shadow: inset 0px 2px 4px rgba(0,0,0,0.2);
+    }
+    
     h1 {
         font-family: 'Playball', cursive;
         color: @lightest;
     }
+    
     img {
         margin: 0 auto;
     }

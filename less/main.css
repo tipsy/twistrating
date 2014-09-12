@@ -2,6 +2,14 @@
 body {
   background: #211d1e;
   color: #dddddd;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.twist-wrapper .image-wrapper {
+  padding: 15px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 .twist-wrapper h1 {
   font-family: 'Playball', cursive;
