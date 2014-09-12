@@ -1,13 +1,25 @@
 @dark: #211D1E;
 @light: #DDDDDD;
 @lightest: #FFFFFF;
+@default-spacing: 15px;
 
 body {
     background: @dark;
     color: @light;
 }
 
+.twist-wrapper {
+    h1 {
+        font-family: 'Playball', cursive;
+        color: @lightest;
+    }
+    img {
+        margin: 0 auto;
+    }
+}
+
 footer {
+    margin-top: @default-spacing;
     color: @light;
     a {
         color: @lightest;

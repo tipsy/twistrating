@@ -3,7 +3,15 @@ body {
   background: #211d1e;
   color: #dddddd;
 }
+.twist-wrapper h1 {
+  font-family: 'Playball', cursive;
+  color: #ffffff;
+}
+.twist-wrapper img {
+  margin: 0 auto;
+}
 footer {
+  margin-top: 15px;
   color: #dddddd;
 }
 footer a {
