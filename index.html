@@ -47,7 +47,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="col-md-3">
                     <div class="twist-wrapper" id="{{id}}-twist">
                         <div class="image-wrapper">
-                            <img src="{{imgurl}}" class="img-responsive img-circle img-shadow" alt="{{name}}">
+                            <img src="{{imageUrl}}" class="img-responsive img-circle img-shadow" alt="{{name}}">
                         </div>
                         <h1 class="text-center">{{name}}</h1>
                         <p >{{loves}}</p>
@@ -82,11 +82,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <![endif]-->
     
     <script>
-        
-        var twistData;
+        var twistTemplate = Handlebars.compile( $("#twist-template").html() );
         
         $.getJSON( "http://twistrating.apiary-mock.com/twists", function(data) {
-            var twistData = data;
+            var twistData = data
+            $("#twist-template-output").html(twistTemplate(twistData));
         })
         .done(function() {
             console.log("Lastet ned twist fra APIet");
@@ -94,10 +94,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .fail(function() {
             alert( "Fant dessverre ingen twist ... :/" );
         });
-        
-        var twistTemplate = Handlebars.compile( $("#twist-template").html() );
-
-        $("#twist-template-output").html(twistTemplate(twistData));
         
     </script>
     
