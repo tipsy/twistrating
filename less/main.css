@@ -27,10 +27,11 @@ body {
   font-size: 40px;
 }
 #twistigation li a {
-  color: #ffffff;
+  color: #dddddd;
   padding: 15px;
 }
 #twistigation li.active a {
+  color: #ffffff;
   text-decoration: underline;
 }
 .tab-content {
@@ -54,6 +55,8 @@ footer a:hover {
   color: #ffffff;
 }
 .twist-wrapper {
+  max-width: 315px;
+  margin: 0 auto;
   padding: 15px;
   border: 1px dashed #3c3537;
   border-radius: 10px;
@@ -110,7 +113,7 @@ footer a:hover {
   margin: 20px auto 20px auto;
   padding: 20px;
 }
-#sortable-twist-list {
+.twist-list-wrapper #sortable-twist-list {
   margin: 0;
   width: 300px;
   border-radius: 10px;
@@ -120,6 +123,22 @@ footer a:hover {
   font-family: 'Playball', cursive;
   font-size: 30px;
 }
-#sortable-twist-list img {
+.twist-list-wrapper #sortable-twist-list img {
   max-width: 200px;
+}
+.fb-share-button {
+  transform: scale(6, 2);
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+.share-on-facebook {
+  cursor: pointer;
+  font-family: 'Playball', cursive;
+  font-size: 30px;
+  color: #dddddd;
+}
+.share-on-facebook:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }

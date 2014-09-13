@@ -34,6 +34,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-W4XBCK');</script>
 <!-- End Google Tag Manager -->
     
+<!-- Facebook SDK -->
+<script>
+window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:"v2.1"})},function(e,n,t){var o,c=e.getElementsByTagName(n)[0];e.getElementById(t)||(o=e.createElement(n),o.id=t,o.src="//connect.facebook.net/en_US/sdk.js",c.parentNode.insertBefore(o,c))}(document,"script","facebook-jssdk");
+</script>
+<!-- End Facebook SDK -->
+    
     <nav id="twistigation">
         <ul role="tablist">
             <li class="active"><a href="#oversikt" role="tab" data-toggle="tab">Oversikt</a></li>
@@ -77,6 +83,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </ol>
                     </div>
                 </script>
+                <h2 class="share-on-facebook text-center">Del på facebook</h2>
             </section>
         </div>
 
@@ -92,7 +99,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
     </footer>
         
-    
     <!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -100,7 +106,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="js/jquery.sortable.min.js"></script>
     
     <script>
-       
+      
     </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -111,6 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <![endif]-->
     
     <script>
+        
         var twistOverviewTemplate = Handlebars.compile( $("#twist-overview-template").html() );
         var twistListTemplate = Handlebars.compile( $("#twist-list-template").html() );
         
@@ -140,6 +147,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         function createList(twistData){
             $("#twist-list-template-output").html(twistListTemplate(twistData));
             $("#sortable-twist-list").sortable();
+        }
+        
+        function createFacebookShareButton() {
+            $(".share-on-facebook").click(function(){
+                FB.ui({
+                    method: 'share',
+                    href: 'http://twistrating.no',
+                }, function(response){});
+            });
         }
         
     </script>
