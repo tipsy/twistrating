@@ -2,16 +2,19 @@
 @light: #DDDDDD;
 @lightest: #FFFFFF;
 @default-spacing: 15px;
-@element-width: 400px;
+@element-width: 300px;
 
 body {
     background: @dark;
     color: @light;
     max-width: 1600px;
     margin: 0 auto;
+    background: url(../pattern.jpg) repeat;
 }
 
 .twist-wrapper {
+    
+    padding: @default-spacing;
     
     .image-wrapper {
         padding: @default-spacing;
@@ -36,6 +39,7 @@ body {
 footer {
     margin-top: @default-spacing;
     color: @light;
+    padding: @default-spacing;
     a {
         color: @lightest;
         &:hover{ color: @lightest; }
@@ -45,13 +49,12 @@ footer {
 .button-row {
     width: 203px;
     margin: 0 auto;
-    padding: @default-spacing 0;
     .btn-twist {
         margin-right: 20px;
         font-size: 60px;
         text-align: center;
         cursor: pointer;
-        color:#ffffff;
+        color: darken(@light, 20);
         transition: all 400ms ease-in-out;
         &:last-child { margin-right: 0; }
         &:hover { transition: all 400ms ease-in-out; }

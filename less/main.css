@@ -4,13 +4,17 @@ body {
   color: #dddddd;
   max-width: 1600px;
   margin: 0 auto;
+  background: url(../pattern.jpg) repeat;
+}
+.twist-wrapper {
+  padding: 15px;
 }
 .twist-wrapper .image-wrapper {
   padding: 15px;
   background: white;
   border-radius: 50%;
   box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
+  max-width: 300px;
   margin: 0 auto;
 }
 .twist-wrapper h1 {
@@ -24,6 +28,7 @@ body {
 footer {
   margin-top: 15px;
   color: #dddddd;
+  padding: 15px;
 }
 footer a {
   color: #ffffff;
@@ -34,14 +39,13 @@ footer a:hover {
 .button-row {
   width: 203px;
   margin: 0 auto;
-  padding: 15px 0;
 }
 .button-row .btn-twist {
   margin-right: 20px;
   font-size: 60px;
   text-align: center;
   cursor: pointer;
-  color: #ffffff;
+  color: #aaaaaa;
   transition: all 400ms ease-in-out;
 }
 .button-row .btn-twist:last-child {
