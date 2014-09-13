@@ -42,11 +42,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div id="twist-list-template-output"></div>
         </div>
         <script id="twist-list-template" type="text/x-handlebars-template">
-            <ol id="sortable-twist-list" class="sortable list">
-            {{#twists}}
-                <li draggable="true"><img src="{{imageUrl}}_small.jpg" alt="{{name}}"></li>
-            {{/twists}}
-            </ol>
+            <div class="twist-list-wrapper">
+                <ol id="sortable-twist-list" class="sortable list">
+                {{#twists}}
+                    <li draggable="true"><img src="{{imageUrl}}_small.jpg" alt="{{name}}"></li>
+                {{/twists}}
+                </ol>
+            </div>
         </script>
     </section>
     

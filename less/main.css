@@ -63,10 +63,17 @@ footer a:hover {
 .button-row .btn-twist.btn-hate:hover {
   color: #ac1c1c;
 }
-#sortable-twist-list {
+.twist-list-wrapper {
+  width: 340px;
+  background-color: white;
   border-radius: 10px;
   margin: 20px auto 20px auto;
+  padding: 20px;
+}
+#sortable-twist-list {
+  margin: 0;
   width: 300px;
+  border-radius: 10px;
   color: #211d1e;
   background: url(../pattern2.jpg) repeat;
   padding: 10px 10px 10px 75px;
