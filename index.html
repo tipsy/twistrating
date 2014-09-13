@@ -46,6 +46,7 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
             <li class=""><a href="#ranger" role="tab" data-toggle="tab">Ranger</a></li>
         </ul>
     </nav>
+    
     <div class="tab-content">
 
         <div class="tab-pane fade active in" id="oversikt">
@@ -106,10 +107,6 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
     <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
     <script src="js/jquery.sortable.min.js"></script>
     
-    <script>
-      
-    </script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -155,6 +152,7 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
         
         function createFacebookShareButton() {
             $(".share-on-facebook").click(function(){
+                //TODO: Lage en stringbuilder for URLen (ta med rangeringen)
                 FB.ui({
                     method: 'share',
                     href: 'http://twistrating.no',
