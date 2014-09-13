@@ -2,8 +2,6 @@
 body {
   background: #211d1e;
   color: #dddddd;
-  max-width: 1600px;
-  margin: 0 auto;
   background: url(../pattern.jpg) repeat;
   background-attachment: fixed;
 }
@@ -17,8 +15,10 @@ body {
   height: 65px;
 }
 #twistigation ul {
+  max-width: 1600px;
   list-style: none;
   padding: 0;
+  margin: 0 auto;
   margin-top: 5px;
 }
 #twistigation li {
@@ -34,7 +34,8 @@ body {
   text-decoration: underline;
 }
 .tab-content {
-  margin-top: 70px;
+  max-width: 1600px;
+  margin: 70px auto;
 }
 footer {
   position: fixed;

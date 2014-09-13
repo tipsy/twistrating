@@ -4,12 +4,11 @@
 @default-spacing: 15px;
 @element-width: 300px;
 @animation-time: 250ms;
+@pagewidth: 1600px;
 
 body {
     background: @dark;
     color: @light;
-    max-width: 1600px;
-    margin: 0 auto;
     background: url(../pattern.jpg) repeat;
     background-attachment: fixed;
 }
@@ -22,7 +21,13 @@ body {
     z-index: 5;
     box-shadow: 0 5px 5px rgba(0,0,0,0.8);
     height: 65px;
-    ul { list-style: none; padding: 0; margin-top: 5px;}
+    ul { 
+        max-width: @pagewidth;
+        list-style: none; 
+        padding: 0; 
+        margin: 0 auto;
+        margin-top: 5px;
+    }
     li { 
         display: inline; 
         font-family: 'Playball', cursive;
@@ -36,7 +41,9 @@ body {
 }
 
 .tab-content { 
-    margin-top: 70px;
+    max-width: @pagewidth;
+    margin: 70px auto;
+    
 }
 
 footer {
@@ -118,3 +125,4 @@ footer {
         max-width: 200px;
     }
 }
+
