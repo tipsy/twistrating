@@ -148,5 +148,11 @@ footer a:hover {
   text-decoration: underline;
 }
 .link-container {
+  display: block;
+  font-size: 20px;
+  color: #dddddd;
   font-family: 'Playball', cursive;
+}
+.link-container:hover {
+  color: #ffffff;
 }
