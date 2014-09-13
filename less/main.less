@@ -15,8 +15,14 @@ body {
 }
 
 #twistigation {
-    margin-top: 10px;
-    ul { list-style: none; padding: 0;}
+    position: fixed;
+    top: 0; 
+    width: 100%;
+    background: url(../pattern.jpg) repeat;
+    z-index: 5;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.8);
+    height: 65px;
+    ul { list-style: none; padding: 0; margin-top: 5px;}
     li { 
         display: inline; 
         font-family: 'Playball', cursive;
@@ -26,6 +32,25 @@ body {
             padding: @default-spacing;
         }
         &.active a { text-decoration: underline }
+    }
+}
+
+.tab-content { 
+    margin-top: 70px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: url(../pattern.jpg) repeat;
+    z-index: 5;
+    color: @light;
+    padding: @default-spacing;
+    box-shadow: 0 -5px 5px rgba(0,0,0,0.8);
+    a {
+        color: @lightest;
+        &:hover{ color: @lightest; }
     }
 }
 
@@ -52,15 +77,6 @@ body {
     }
 }
 
-footer {
-    margin-top: @default-spacing;
-    color: @light;
-    padding: @default-spacing;
-    a {
-        color: @lightest;
-        &:hover{ color: @lightest; }
-    }
-}
 
 .button-row {
     width: 203px;
