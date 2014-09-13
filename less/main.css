@@ -46,13 +46,13 @@ footer a:hover {
   text-align: center;
   cursor: pointer;
   color: #aaaaaa;
-  transition: all 400ms ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 .button-row .btn-twist:last-child {
   margin-right: 0;
 }
 .button-row .btn-twist:hover {
-  transition: all 400ms ease-in-out;
+  transition: all 250ms ease-in-out;
 }
 .button-row .btn-twist.btn-love:hover {
   color: #157715;
@@ -62,4 +62,17 @@ footer a:hover {
 }
 .button-row .btn-twist.btn-hate:hover {
   color: #ac1c1c;
+}
+#sortable-twist-list {
+  border-radius: 10px;
+  margin: 20px auto 20px auto;
+  width: 300px;
+  color: #211d1e;
+  background-color: #F5D1B1;
+  padding: 10px 10px 10px 75px;
+  font-family: 'Playball', cursive;
+  font-size: 30px;
+}
+#sortable-twist-list img {
+  max-width: 200px;
 }

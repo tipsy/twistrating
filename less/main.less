@@ -3,6 +3,7 @@
 @lightest: #FFFFFF;
 @default-spacing: 15px;
 @element-width: 300px;
+@animation-time: 250ms;
 
 body {
     background: @dark;
@@ -55,12 +56,26 @@ footer {
         text-align: center;
         cursor: pointer;
         color: darken(@light, 20);
-        transition: all 400ms ease-in-out;
+        transition: all @animation-time ease-in-out;
         &:last-child { margin-right: 0; }
-        &:hover { transition: all 400ms ease-in-out; }
+        &:hover { transition: all @animation-time ease-in-out; }
         &.btn-love:hover{ color: #157715; }
         &.btn-soso:hover{ color: #be841c; }
         &.btn-hate:hover{ color: #ac1c1c; }
     }
     
+}
+
+#sortable-twist-list {
+    border-radius: 10px;
+    margin: 20px auto 20px auto;
+    width: 300px;
+    color: @dark;
+    background-color: #F5D1B1;
+    padding: 10px 10px 10px 75px;
+    font-family: 'Playball', cursive;
+    font-size: 30px;
+    img{
+        max-width: 200px;
+    }
 }
