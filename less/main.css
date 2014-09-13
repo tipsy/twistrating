@@ -105,13 +105,13 @@ footer a:hover {
   transition: all 250ms ease-in-out;
 }
 .twist-wrapper .button-row .btn-twist.btn-love:hover {
-  color: #157715;
+  color: #175c17;
 }
 .twist-wrapper .button-row .btn-twist.btn-soso:hover {
-  color: #be841c;
+  color: #966c21;
 }
 .twist-wrapper .button-row .btn-twist.btn-hate:hover {
-  color: #ac1c1c;
+  color: #912929;
 }
 #twist-overview-template-output:last-child {
   padding-bottom: 70px;
