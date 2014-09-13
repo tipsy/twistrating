@@ -128,6 +128,7 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
             var twistData = data;
             createList(data);
             $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
+            $(".twist-wrapper").last().css("margin-bottom", "70px"); //hack, not sure why needed...
             $(".btn-twist").click(function() {
                 var id = $(this).data("id");
                 var rating = $(this).data("value");
