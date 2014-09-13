@@ -42,8 +42,7 @@ body {
 
 .tab-content { 
     max-width: @pagewidth;
-    margin: 70px auto;
-    
+    margin: 90px auto;
 }
 
 footer {
@@ -64,6 +63,9 @@ footer {
 .twist-wrapper {
     
     padding: @default-spacing;
+    border: 1px dashed lighten(@dark, 10%);
+    border-radius: 10px;
+    margin-bottom: @default-spacing;
     
     .image-wrapper {
         padding: @default-spacing;
@@ -74,6 +76,7 @@ footer {
     }
     
     h1 {
+        margin-top: 0;
         font-family: 'Playball', cursive;
         color: @lightest;
         text-decoration: underline;
@@ -82,27 +85,30 @@ footer {
     img {
         margin: 0 auto;
     }
-}
-
-
-.button-row {
-    width: 203px;
-    margin: 0 auto;
-    .btn-twist {
-        margin-right: 20px;
-        font-size: 60px;
-        text-align: center;
-        cursor: pointer;
-        color: darken(@light, 20);
-        transition: all @animation-time ease-in-out;
-        &:last-child { margin-right: 0; }
-        &:hover { transition: all @animation-time ease-in-out; }
-        &.btn-love:hover{ color: #157715; }
-        &.btn-soso:hover{ color: #be841c; }
-        &.btn-hate:hover{ color: #ac1c1c; }
-    }
     
+    .button-row {
+        height: 70px;
+        width: 203px;
+        margin: 0 auto;
+        .btn-twist {
+            margin-right: 20px;
+            font-size: 60px;
+            text-align: center;
+            cursor: pointer;
+            color: lighten(@dark, 10);
+            transition: all @animation-time ease-in-out;
+            &:last-child { margin-right: 0; }
+            &:hover { transition: all @animation-time ease-in-out; }
+            &.btn-love:hover{ color: #157715; }
+            &.btn-soso:hover{ color: #be841c; }
+            &.btn-hate:hover{ color: #ac1c1c; }
+        }
+
+    }
 }
+
+
+
 
 .twist-list-wrapper {
     width: 340px;

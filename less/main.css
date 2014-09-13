@@ -35,7 +35,7 @@ body {
 }
 .tab-content {
   max-width: 1600px;
-  margin: 70px auto;
+  margin: 90px auto;
 }
 footer {
   position: fixed;
@@ -55,6 +55,9 @@ footer a:hover {
 }
 .twist-wrapper {
   padding: 15px;
+  border: 1px dashed #3c3537;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 .twist-wrapper .image-wrapper {
   padding: 15px;
@@ -64,6 +67,7 @@ footer a:hover {
   margin: 0 auto;
 }
 .twist-wrapper h1 {
+  margin-top: 0;
   font-family: 'Playball', cursive;
   color: #ffffff;
   text-decoration: underline;
@@ -71,31 +75,32 @@ footer a:hover {
 .twist-wrapper img {
   margin: 0 auto;
 }
-.button-row {
+.twist-wrapper .button-row {
+  height: 70px;
   width: 203px;
   margin: 0 auto;
 }
-.button-row .btn-twist {
+.twist-wrapper .button-row .btn-twist {
   margin-right: 20px;
   font-size: 60px;
   text-align: center;
   cursor: pointer;
-  color: #aaaaaa;
+  color: #3c3537;
   transition: all 250ms ease-in-out;
 }
-.button-row .btn-twist:last-child {
+.twist-wrapper .button-row .btn-twist:last-child {
   margin-right: 0;
 }
-.button-row .btn-twist:hover {
+.twist-wrapper .button-row .btn-twist:hover {
   transition: all 250ms ease-in-out;
 }
-.button-row .btn-twist.btn-love:hover {
+.twist-wrapper .button-row .btn-twist.btn-love:hover {
   color: #157715;
 }
-.button-row .btn-twist.btn-soso:hover {
+.twist-wrapper .button-row .btn-twist.btn-soso:hover {
   color: #be841c;
 }
-.button-row .btn-twist.btn-hate:hover {
+.twist-wrapper .button-row .btn-twist.btn-hate:hover {
   color: #ac1c1c;
 }
 .twist-list-wrapper {
