@@ -42,14 +42,14 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
     
     <nav id="twistigation">
         <ul role="tablist">
-            <li class="active"><a href="#oversikt" role="tab" data-toggle="tab">Oversikt</a></li>
-            <li class=""><a href="#ranger" role="tab" data-toggle="tab">Ranger</a></li>
+            <li id="overview-tab"><a href="#overview" role="tab" data-toggle="tab">Oversikt</a></li>
+            <li id="rate-tab"><a href="#rate" role="tab" data-toggle="tab">Ranger</a></li>
         </ul>
     </nav>
     
     <div class="tab-content">
 
-        <div class="tab-pane fade active in" id="oversikt">
+        <div class="tab-pane fade" id="overview">
             <section id="overview-section">
                 <div id="twist-overview-template-output"></div>
                 <script id="twist-overview-template" type="text/x-handlebars-template">
@@ -72,7 +72,7 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
             </section>
         </div>
 
-        <div class="tab-pane fade" id="ranger">
+        <div class="tab-pane fade" id="rate">
             <section id="rating-section">
                 <h1 class="text-center">Trykk og dra for å bytte plass på twistene</h1>
                 <div id="twist-list-template-output"></div>
@@ -80,12 +80,14 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
                     <div class="twist-list-wrapper">
                         <ol id="sortable-twist-list" class="sortable list">
                         {{#twists}}
-                            <li draggable="true"><img src="{{imageUrl}}_small.jpg" alt="{{name}}"></li>
+                            <li data-charid="{{charId}}" draggable="true"><img src="{{imageUrl}}_small.jpg" alt="{{name}}"></li>
                         {{/twists}}
                         </ol>
                     </div>
                 </script>
-                <h2 class="share-on-facebook text-center">Del på facebook</h2>
+                <h2 class="share-link copy-link text-center">Lag lenke</h2>
+                <h2 class="link-container text-center"></h2>
+                <h2 class="share-link share-on-facebook text-center">Del på facebook</h2>
             </section>
         </div>
 
@@ -117,13 +119,61 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
     <script>
             
         createFacebookShareButton();
-        
+        createCopyLinkButton();
         var twistOverviewTemplate = Handlebars.compile( $("#twist-overview-template").html() );
         var twistListTemplate = Handlebars.compile( $("#twist-list-template").html() );
         
         $.getJSON( "http://twistrating.apiary-mock.com/twists", function(data) {
-            var twistData = data;
             createList(data);
+            createOverview(data);
+        })
+        .done(function() {
+            console.log("Lastet ned twist fra APIet");
+        })
+        .fail(function() {
+            alert( "Fant ingen twist i APIet... :/" );
+        });
+        
+        function createList(twistData) {
+            var order = $(location).attr('href').split("#")[1] || "fail";
+            sortedTwists = sortTwists(twistData, order);
+            if(sortedTwists.twists.length === twistData.twists.length) {
+                twistData = sortedTwists;
+                goToOrderPage();
+            }else{
+                goToOverviewPage();
+            }
+            
+            $("#twist-list-template-output").html(twistListTemplate(twistData));
+            $("#sortable-twist-list").sortable();
+        }
+        
+        function goToOrderPage() {
+            $("#rate,#rate-tab").addClass("active in"); 
+        }
+        
+        function goToOverviewPage() {
+            $("#overview,#overview-tab").addClass("active in");
+        }
+        
+        function sortTwists(twistData, order) {
+            twists = twistData.twists;
+            var sortedTwists = [];
+            var usedCharIds = [];
+            for (var i = 0; i < order.length; i++) {
+                var charId = order.charAt(i);
+                var foundTwists = twists.filter(function (twist) {
+                    return (twist.charId === charId);
+                });
+                if (foundTwists.length === 1 && usedCharIds.indexOf(charId) === -1) {
+                    sortedTwists.push(foundTwists[0]);
+                    usedCharIds.push(charId);
+                }
+            }
+            return { twists : sortedTwists };
+        }
+        
+        function createOverview(twistData) {
             $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
             $(".twist-wrapper").last().css("margin-bottom", "70px"); //hack, not sure why needed...
             $(".btn-twist").click(function() {
@@ -137,27 +187,30 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
                   dataType:"json",
                 });
             });
-        })
-        .done(function() {
-            console.log("Lastet ned twist fra APIet");
-        })
-        .fail(function() {
-            alert( "Fant ingen twist i APIet... :/" );
-        });
+        }
         
-        function createList(twistData){
-            $("#twist-list-template-output").html(twistListTemplate(twistData));
-            $("#sortable-twist-list").sortable();
+        function createCopyLinkButton(){
+            $(".copy-link").click(function(){
+                $(".link-container").text("http://twistrating.no#"+getTwistOrder());
+            });
         }
         
         function createFacebookShareButton() {
             $(".share-on-facebook").click(function(){
-                //TODO: Lage en stringbuilder for URLen (ta med rangeringen)
+                console.log("TwistRating: " + getTwistOrder());
                 FB.ui({
                     method: 'share',
-                    href: 'http://twistrating.no',
+                    href: 'http://twistrating.no#'+getTwistOrder(),
                 }, function(response){});
             });
+        }
+        
+        function getTwistOrder(){
+            var order = "";
+            $("#sortable-twist-list li").each(function(){
+                order += $(this).data("charid");
+            });
+            return order;
         }
         
     </script>

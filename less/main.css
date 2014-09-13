@@ -139,12 +139,14 @@ footer a:hover {
 .twist-list-wrapper #sortable-twist-list img {
   max-width: 200px;
 }
-.share-on-facebook {
+.share-link {
   cursor: pointer;
   font-family: 'Playball', cursive;
-  color: #dddddd;
 }
-.share-on-facebook:hover {
+.share-link:hover {
   color: #ffffff;
   text-decoration: underline;
+}
+.link-container {
+  font-family: 'Playball', cursive;
 }
