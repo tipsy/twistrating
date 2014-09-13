@@ -5,6 +5,7 @@ body {
   max-width: 1600px;
   margin: 0 auto;
   background: url(../pattern.jpg) repeat;
+  background-attachment: fixed;
 }
 .twist-wrapper {
   padding: 15px;
