@@ -14,6 +14,21 @@ body {
     background-attachment: fixed;
 }
 
+#twistigation {
+    margin-top: 10px;
+    ul { list-style: none; padding: 0;}
+    li { 
+        display: inline; 
+        font-family: 'Playball', cursive;
+        font-size: 40px;
+        a { 
+            color: @lightest; 
+            padding: @default-spacing;
+        }
+        &.active a { text-decoration: underline }
+    }
+}
+
 .twist-wrapper {
     
     padding: @default-spacing;
@@ -22,7 +37,6 @@ body {
         padding: @default-spacing;
         background: white;
         border-radius: 50%;
-        box-shadow: inset 0px 2px 4px rgba(0,0,0,0.2);
         max-width: @element-width;
         margin: 0 auto;
     }

@@ -37,55 +37,70 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <header>
     </header>
     
-     <section>
-        <div class="row">
-            <div id="twist-list-template-output"></div>
-        </div>
-        <script id="twist-list-template" type="text/x-handlebars-template">
-            <div class="twist-list-wrapper">
-                <ol id="sortable-twist-list" class="sortable list">
-                {{#twists}}
-                    <li draggable="true"><img src="{{imageUrl}}_small.jpg" alt="{{name}}"></li>
-                {{/twists}}
-                </ol>
-            </div>
-        </script>
-    </section>
-    
     <div class="col-lg-12">
-        <section>
-            <div class="row">
-                <div id="twist-overview-template-output"></div>
+        
+        <nav id="twistigation">
+            <ul role="tablist">
+                <li class="active"><a href="#oversikt" role="tab" data-toggle="tab">Oversikt</a></li>
+                <li class=""><a href="#ranger" role="tab" data-toggle="tab">Ranger</a></li>
+            </ul>
+        </nav>
+        <div class="tab-content">
+            
+            <div class="tab-pane fade active in" id="oversikt">
+                <section id="overview-section">
+                    <div class="row">
+                        <div id="twist-overview-template-output"></div>
+                    </div>
+                    <script id="twist-overview-template" type="text/x-handlebars-template">
+                        {{#twists}}
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="twist-wrapper" id="{{id}}">
+                                <h1 class="text-center">{{name}}</h1>
+                                <div class="image-wrapper">
+                                    <img src="{{imageUrl}}.jpg" class="img-responsive img-circle" alt="{{name}}">
+                                </div>
+                                <div class="row button-row">
+                                    <a class="btn-twist btn-love text-left"   data-value="3" data-id="{{id}}"><i class="fa fa-smile-o"></i></a>
+                                    <a class="btn-twist btn-soso text-center" data-value="2" data-id="{{id}}"><i class="fa fa-meh-o"></i></a>
+                                    <a class="btn-twist btn-hate text-right"  data-value="1" data-id="{{id}}"><i class="fa fa-frown-o"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/twists}}
+                    </script>
+                </section>
             </div>
-            <script id="twist-overview-template" type="text/x-handlebars-template">
-                {{#twists}}
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="twist-wrapper" id="{{id}}">
-                        <h1 class="text-center">{{name}}</h1>
-                        <div class="image-wrapper">
-                            <img src="{{imageUrl}}.jpg" class="img-responsive img-circle" alt="{{name}}">
+            
+            <div class="tab-pane fade" id="ranger">
+                <section id="rating-section">
+                    <div class="row">
+                        <div id="twist-list-template-output"></div>
+                    </div>
+                    <script id="twist-list-template" type="text/x-handlebars-template">
+                        <div class="twist-list-wrapper">
+                            <ol id="sortable-twist-list" class="sortable list">
+                            {{#twists}}
+                                <li draggable="true"><img src="{{imageUrl}}_small.jpg" alt="{{name}}"></li>
+                            {{/twists}}
+                            </ol>
                         </div>
-                        <div class="row button-row">
-                            <a class="btn-twist btn-love text-left"   data-value="3" data-id="{{id}}"><i class="fa fa-smile-o"></i></a>
-                            <a class="btn-twist btn-soso text-center" data-value="2" data-id="{{id}}"><i class="fa fa-meh-o"></i></a>
-                            <a class="btn-twist btn-hate text-right"  data-value="1" data-id="{{id}}"><i class="fa fa-frown-o"></i></a>
-                        </div>
+                    </script>
+                </section>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        Twistrating er utviklet og driftet av <a href="http://didi.no" target="_blank">didi</a>.
                     </div>
                 </div>
-                {{/twists}}
-            </script>
-        </section>
-    </div>
-   
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="text-center">
-                    Twistrating er utviklet og driftet av <a href="http://didi.no" target="_blank">didi</a>.
-                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+        
+    </div>
     
     <!-- Scripts -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

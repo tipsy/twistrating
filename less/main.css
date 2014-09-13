@@ -7,6 +7,25 @@ body {
   background: url(../pattern.jpg) repeat;
   background-attachment: fixed;
 }
+#twistigation {
+  margin-top: 10px;
+}
+#twistigation ul {
+  list-style: none;
+  padding: 0;
+}
+#twistigation li {
+  display: inline;
+  font-family: 'Playball', cursive;
+  font-size: 40px;
+}
+#twistigation li a {
+  color: #ffffff;
+  padding: 15px;
+}
+#twistigation li.active a {
+  text-decoration: underline;
+}
 .twist-wrapper {
   padding: 15px;
 }
@@ -14,7 +33,6 @@ body {
   padding: 15px;
   background: white;
   border-radius: 50%;
-  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
   max-width: 300px;
   margin: 0 auto;
 }
