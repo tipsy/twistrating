@@ -30,7 +30,7 @@ body {
     }
     li { 
         display: inline; 
-            font-family: 'Playball', cursive;
+        font-family: 'Playball', cursive;
         font-size: 40px;
         a { 
             color: @light; 
@@ -64,15 +64,12 @@ footer {
 }
 
 .twist-wrapper {
-    
     max-width: @element-width+@default-spacing;
     margin: 0 auto;
-    
     padding: @default-spacing;
     border: 1px dashed lighten(@dark, 10%);
     border-radius: 10px;
     margin-bottom: @default-spacing;
-    
     .image-wrapper {
         padding: @default-spacing;
         background: white;
@@ -80,18 +77,15 @@ footer {
         max-width: @element-width;
         margin: 0 auto;
     }
-    
     h1 {
         margin-top: 0;
         font-family: 'Playball', cursive;
         color: @lightest;
         text-decoration: underline;
     }
-    
     img {
         margin: 0 auto;
     }
-    
     .button-row {
         height: 70px;
         width: 203px;
@@ -109,9 +103,10 @@ footer {
             &.btn-soso:hover{ color: #be841c; }
             &.btn-hate:hover{ color: #ac1c1c; }
         }
-
     }
 }
+
+#rating-section h1{ font-family: 'Playball', cursive; }
 
 .twist-list-wrapper {
     width: 340px;
@@ -119,7 +114,6 @@ footer {
     border-radius: 10px;
     margin: 20px auto 20px auto;
     padding: 20px; 
-    
     #sortable-twist-list {
         margin: 0;
         width: 300px;
@@ -135,17 +129,9 @@ footer {
     }
 }
 
-.fb-share-button { 
-    transform: scale(6, 2);
-    position: absolute !important;
-    top: 0;
-    left: 0;
-}
-
 .share-on-facebook {
     cursor: pointer;
     font-family: 'Playball', cursive;
-    font-size: 30px;
     color: @light;
     &:hover{ color: @lightest; text-decoration: underline; }
 }

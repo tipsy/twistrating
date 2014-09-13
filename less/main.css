@@ -106,6 +106,9 @@ footer a:hover {
 .twist-wrapper .button-row .btn-twist.btn-hate:hover {
   color: #ac1c1c;
 }
+#rating-section h1 {
+  font-family: 'Playball', cursive;
+}
 .twist-list-wrapper {
   width: 340px;
   background-color: white;
@@ -126,16 +129,9 @@ footer a:hover {
 .twist-list-wrapper #sortable-twist-list img {
   max-width: 200px;
 }
-.fb-share-button {
-  transform: scale(6, 2);
-  position: absolute !important;
-  top: 0;
-  left: 0;
-}
 .share-on-facebook {
   cursor: pointer;
   font-family: 'Playball', cursive;
-  font-size: 30px;
   color: #dddddd;
 }
 .share-on-facebook:hover {
