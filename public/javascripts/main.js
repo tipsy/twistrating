@@ -48,7 +48,7 @@ $(function () {
             goToOverviewPage();
         }
         $("#twist-list-template-output").html(twistListTemplate(twistData));
-        $("#sortable-twist-list").sortable();
+        new Sortable(document.getElementById("sortable-twist-list"));
     }
     
     function createCopyLinkButton() {
