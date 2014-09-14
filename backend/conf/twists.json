@@ -1,0 +1,80 @@
+[
+    {
+        "id": "daim",
+        "name": "Daim",
+        "imageUrl": "img/daim",
+        "charId": "a"
+    },
+    {
+        "id": "cocos",
+        "name": "Cocos",
+        "imageUrl": "img/cocos",
+        "charId": "n"
+    },
+    {
+        "id": "chocolatetoffee",
+        "name": "Chocolate Toffee",
+        "imageUrl": "img/chocolatetoffee",
+        "charId": "c"
+    },
+    {
+        "id": "japp",
+        "name": "Japp",
+        "imageUrl": "img/japp",
+        "charId": "m"
+    },
+    {
+        "id": "aprikos",
+        "name": "Aprikos",
+        "imageUrl": "img/aprikos",
+        "charId": "e"
+    },
+    {
+        "id": "banan",
+        "name": "Banan",
+        "imageUrl": "img/banan",
+        "charId": "o"
+    },
+    {
+        "id": "lakris",
+        "name": "Lakris",
+        "imageUrl": "img/lakris",
+        "charId": "u"
+    },
+    {
+        "id": "nougatcrisp",
+        "name": "Nougat Crisp",
+        "imageUrl": "img/nougatcrisp",
+        "charId": "w"
+    },
+    {
+        "id": "noetti",
+        "name": "Nøtti",
+        "imageUrl": "img/noetti",
+        "charId": "v"
+    },
+    {
+        "id": "marsipan",
+        "name": "Marsipan",
+        "imageUrl": "img/marsipan",
+        "charId": "z"
+    },
+    {
+        "id": "fransknougat",
+        "name": "Fransk Nougat",
+        "imageUrl": "img/fransknougat",
+        "charId": "x"
+    },
+    {
+        "id": "caramel",
+        "name": "Caramel",
+        "imageUrl": "img/caramel",
+        "charId": "r"
+    },
+    {
+        "id": "goldentoffee",
+        "name": "Golden Toffee",
+        "imageUrl": "img/goldentoffee",
+        "charId": "s"
+    }
+]
