@@ -31,6 +31,7 @@ public class Application extends Controller {
 
     @BodyParser.Of(BodyParser.Json.class)
     public Result getTwists() {
+//        String remote = request().remoteAddress();
         List<Twist> twists = twistRating.getTwists();
         Map<String, Object> json = new HashMap<>();
         json.put("twists", twists);
@@ -43,12 +44,22 @@ public class Application extends Controller {
     @BodyParser.Of(BodyParser.Json.class)
     public Result rateTwist() {
         JsonNode json = request().body().asJson();
-        String twistId = json.get("twistId").asText();
+        String twistId = json.get("id").asText();
         int rating = json.get("rating").asInt(-1);
 
         twistRating.rateTwist(twistId, rating);
 
         return ok();
+    }
+
+    private String getSessionId() {
+        String uuid = session("uuid");
+        if(uuid == null) {
+            uuid = java.util.UUID.randomUUID().toString();
+            session("uuid", uuid);
+        }
+
+        return uuid;
     }
 
     private static String stringFromJson(Object json) {
