@@ -131,7 +131,6 @@ $(function () {
     
     function createOverview(twistData) {
         $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
-        $(".twist-wrapper").last().css("margin-bottom", "70px"); //hack, not sure why needed...
         createRatingButtons();
     }
     
