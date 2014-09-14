@@ -2,9 +2,9 @@
 $(function () {
     'use strict';
     
-    var apiBaseUrl = "http://localhost:9000";
+    var apiBaseUrl = window.location.protocol + "//" + window.location.host;
 //    var apiBaseUrl = "http://twistrating.apiary-mock.com";
-    var publicBaseUrl = "http://twistrating.no";
+    var publicBaseUrl = window.location.protocol + "//" + window.location.host;
     
     var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
         twistListTemplate     = Handlebars.compile($("#twist-list-template").html());
