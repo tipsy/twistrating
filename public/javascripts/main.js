@@ -2,7 +2,7 @@
 $(function () {
     'use strict';
     
-    var apiBaseUrl = "http://127.0.0.1:9000";
+    var apiBaseUrl = "http://localhost:9000";
 //    var apiBaseUrl = "http://twistrating.apiary-mock.com";
     var publicBaseUrl = "http://twistrating.no";
     

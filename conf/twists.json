@@ -2,79 +2,79 @@
     {
         "id": "daim",
         "name": "Daim",
-        "imageUrl": "img/daim",
+        "imageUrl": "daim",
         "charId": "a"
     },
     {
         "id": "cocos",
         "name": "Cocos",
-        "imageUrl": "img/cocos",
+        "imageUrl": "cocos",
         "charId": "n"
     },
     {
         "id": "chocolatetoffee",
         "name": "Chocolate Toffee",
-        "imageUrl": "img/chocolatetoffee",
+        "imageUrl": "chocolatetoffee",
         "charId": "c"
     },
     {
         "id": "japp",
         "name": "Japp",
-        "imageUrl": "img/japp",
+        "imageUrl": "japp",
         "charId": "m"
     },
     {
         "id": "aprikos",
         "name": "Aprikos",
-        "imageUrl": "img/aprikos",
+        "imageUrl": "aprikos",
         "charId": "e"
     },
     {
         "id": "banan",
         "name": "Banan",
-        "imageUrl": "img/banan",
+        "imageUrl": "banan",
         "charId": "o"
     },
     {
         "id": "lakris",
         "name": "Lakris",
-        "imageUrl": "img/lakris",
+        "imageUrl": "lakris",
         "charId": "u"
     },
     {
         "id": "nougatcrisp",
         "name": "Nougat Crisp",
-        "imageUrl": "img/nougatcrisp",
+        "imageUrl": "nougatcrisp",
         "charId": "w"
     },
     {
         "id": "noetti",
         "name": "Nøtti",
-        "imageUrl": "img/noetti",
+        "imageUrl": "noetti",
         "charId": "v"
     },
     {
         "id": "marsipan",
         "name": "Marsipan",
-        "imageUrl": "img/marsipan",
+        "imageUrl": "marsipan",
         "charId": "z"
     },
     {
         "id": "fransknougat",
         "name": "Fransk Nougat",
-        "imageUrl": "img/fransknougat",
+        "imageUrl": "fransknougat",
         "charId": "x"
     },
     {
         "id": "caramel",
         "name": "Caramel",
-        "imageUrl": "img/caramel",
+        "imageUrl": "caramel",
         "charId": "r"
     },
     {
         "id": "goldentoffee",
         "name": "Golden Toffee",
-        "imageUrl": "img/goldentoffee",
+        "imageUrl": "goldentoffee",
         "charId": "s"
     }
 ]
