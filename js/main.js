@@ -1,6 +1,7 @@
-/*global $:false, Handlebars:false, console:false, FB: false, alert: false */
+/*global $:false, Handlebars:false, console:false, FB: false, alert: false, Chart: false*/
 $(function () {
     'use strict';
+    
     var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
         twistListTemplate     = Handlebars.compile($("#twist-list-template").html());
     
@@ -75,16 +76,50 @@ $(function () {
         });
     }
     
+    function buildChart(clickEvent) {
+        var $twistStats = $(clickEvent.parent().parent().find(".twist-stats")),
+            loves = $twistStats.data("loves"),
+            sosos = $twistStats.data("sosos"),
+            hates = $twistStats.data("hates"),
+            data = {
+                labels: ["Nam", "Hm", "Æsj"],
+                datasets: [
+                    {
+                        label: "",
+                        fillColor: "rgba(33,29,30,1)",
+                        highlightFill: "rgba(33,29,30,0.85)",
+                        data: [loves, sosos, hates]
+                    }
+                ]
+            },
+            options = {
+                animation: true,
+                barShowStroke : false
+            },
+            myNewChart = new Chart($twistStats.get(0).getContext('2d')).Bar(data, options);
+    }
+    
     function showStats(clickEvent) {
         var $topImage   = $(clickEvent.parent().parent().find(".top-image")),
-            $twistStats = $(clickEvent.parent().parent().find(".twist-stats"));
-        $topImage.animate({height: "130px"}, 1000, function () {
-            $twistStats.show();    
-        });
+            $twistStats = $(clickEvent.parent().parent().find(".twist-stats")),
+            currentWidth = clickEvent.parent().parent().find(".image-wrapper").width();
+        
+        if (!$twistStats.is(":visible")) {
+            $topImage.animate({height: "130px"}, 1000);
+            setTimeout(function () {
+                $twistStats.fadeIn(200);
+                buildChart(clickEvent);
+            }, 400);
+        } else {
+            //$twistStats.fadeOut(600);
+            //$topImage.animate({height: currentWidth + "px"}, 1000);
+        }
     }
     
     function createRatingButtons(twistData) {
         $(".btn-twist").click(function () {
+            $(this).addClass("pressed");
+            $(this).siblings().removeClass("pressed");
             sendRatingJSON($(this));
             showStats($(this));
         });

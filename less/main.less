@@ -101,7 +101,6 @@ footer {
         .center-absolute;
         bottom: 50px;
         height: 100px;
-        background: red;
         max-width: 150px;
         display: none;
     }
@@ -118,9 +117,18 @@ footer {
             transition: all @animation-time ease-in-out;
             &:last-child { margin-right: 0; }
             &:hover { transition: all @animation-time ease-in-out; }
-            &.btn-love:hover{ color: #134813; }
-            &.btn-soso:hover{ color: #966c21; }
-            &.btn-hate:hover{ color: #912929; }
+            &.btn-love{
+                &:hover{ color: #134813; }
+                &.pressed{ color: #134813; }
+            }
+            &.btn-soso{
+                &:hover{ color: #966c21; }
+                &.pressed{ color: #966c21; }
+            }
+            &.btn-hate{
+                &:hover{ color: #912929; }
+                &.pressed{ color: #912929; }
+            }
         }
     }
 }

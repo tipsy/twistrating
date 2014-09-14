@@ -61,13 +61,13 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
                                 <div class="image-background">
                                     <img src="/pattern2.jpg"    class="img-responsive img-circle" alt="Image background">
                                     <img src="{{imageUrl}}.jpg" class="top-image img-responsive img-circle" alt="{{name}}">
-                                    <div class="twist-stats"></div>
+                                    <canvas data-loves="{{loves}}" data-sosos="{{sosos}}" data-hates="{{hates}}" class="twist-stats" width="150" height="100"></canvas>
                                 </div>
                             </div>
                             <div class="row button-row">
-                                <a class="btn-twist btn-love text-left"   data-value="3" data-id="{{id}}"><i class="fa fa-smile-o"></i></a>
-                                <a class="btn-twist btn-soso text-center" data-value="2" data-id="{{id}}"><i class="fa fa-meh-o"></i></a>
-                                <a class="btn-twist btn-hate text-right"  data-value="1" data-id="{{id}}"><i class="fa fa-frown-o"></i></a>
+                                <a class="btn-twist btn-love text-left"   data-value="1" data-id="{{id}}"><i class="fa fa-smile-o"></i></a>
+                                <a class="btn-twist btn-soso text-center" data-value="0" data-id="{{id}}"><i class="fa fa-meh-o"></i></a>
+                                <a class="btn-twist btn-hate text-right"  data-value="-1" data-id="{{id}}"><i class="fa fa-frown-o"></i></a>
                             </div>
                         </div>
                     </div>
@@ -120,6 +120,7 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="js/main.js"></script>
+    <script src="js/chart.min.js"></script>
     <!-- prod <script src="js/main.min.js"></script> -->
 </body>
 </html>

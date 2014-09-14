@@ -102,7 +102,6 @@ footer a:hover {
   right: 0;
   bottom: 50px;
   height: 100px;
-  background: red;
   max-width: 150px;
   display: none;
 }
@@ -128,10 +127,19 @@ footer a:hover {
 .twist-wrapper .button-row .btn-twist.btn-love:hover {
   color: #134813;
 }
+.twist-wrapper .button-row .btn-twist.btn-love.pressed {
+  color: #134813;
+}
 .twist-wrapper .button-row .btn-twist.btn-soso:hover {
   color: #966c21;
 }
+.twist-wrapper .button-row .btn-twist.btn-soso.pressed {
+  color: #966c21;
+}
 .twist-wrapper .button-row .btn-twist.btn-hate:hover {
+  color: #912929;
+}
+.twist-wrapper .button-row .btn-twist.btn-hate.pressed {
   color: #912929;
 }
 .center-absolute {
