@@ -12,19 +12,24 @@ public class RatingEventHandler {
         System.out.println("Someone rated " + event.getTwistId() + " to " + event.getRating());
 
         Twist twist = Twist.find.byId(event.getTwistId());
-        if (twist != null) {
+        Twist clonedTwist = (Twist)twist._ebean_createCopy();
+        twist.delete();
+
+        if (clonedTwist != null) {
+            System.out.println("Found twist:" + clonedTwist.id + " with likeCount:" + clonedTwist.likeCount);
             switch (event.getRating()) {
                 case 1:
-                    twist.likeCount++;
+                    clonedTwist.likeCount++;
                     break;
                 case 0:
-                    twist.neutralCount++;
+                    clonedTwist.neutralCount++;
                     break;
                 case -1:
-                    twist.dislikeCount++;
+                    clonedTwist.dislikeCount++;
                     break;
             }
-            Ebean.save(twist);
+            System.out.println("Found twist:" + clonedTwist.id + " with likeCount:" + clonedTwist.likeCount);
+            Ebean.save(clonedTwist);
         }
     }
 }
