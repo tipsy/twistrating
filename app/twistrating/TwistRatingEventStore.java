@@ -26,7 +26,7 @@ public class TwistRatingEventStore implements TwistRating {
 
     public List<Twist> getTwists() {
         bootstrapDatabase();
-        return Twist.find.orderBy("like_count DESC, neutral_count DESC, dislike_count ASC").findList();
+        return Twist.find.orderBy("(like_count-dislike_count) DESC").findList();
     }
 
     private void bootstrapDatabase() {
