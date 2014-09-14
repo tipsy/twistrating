@@ -16,7 +16,7 @@ body {
   height: 100%;
   color: @light;
   background-color: @dark;
-  background: url(../images/pattern.jpg) repeat;
+  background: url(../images/pattern.jpg) repeat fixed, url(../images/pattern.jpg) repeat;
 }
 
 #twistigation {
@@ -168,6 +168,30 @@ footer {
     img{
       max-width: 150px;
     }
+    li:last-child {
+      list-style: none;
+    }
+  }
+}
+
+.sortable-ghost {
+
+}
+
+
+@media (min-width: 760px) {
+  .twist-list-wrapper {
+    width: 340px;
+    margin: 20px auto 20px auto;
+    padding: 20px;
+    #sortable-twist-list {
+      width: 300px;
+      padding: 10px 10px 10px 75px;
+      font-size: 30px;
+      img{
+        max-width: 200px;
+      }
+    }
   }
 }
 
@@ -185,21 +209,3 @@ footer {
   &:hover{ color: @lightest; }
 }
 
-@media (min-width: 760px) {
-  body {
-    background-attachment: fixed;
-  }
-  .twist-list-wrapper {
-    width: 340px;
-    margin: 20px auto 20px auto;
-    padding: 20px;
-    #sortable-twist-list {
-      width: 300px;
-      padding: 10px 10px 10px 75px;
-      font-size: 30px;
-      img{
-        max-width: 200px;
-      }
-    }
-  }
-}
