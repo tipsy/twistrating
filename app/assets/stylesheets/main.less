@@ -19,25 +19,6 @@ body {
   background: url(../images/pattern.jpg) repeat;
 }
 
-@media (min-width: 760px) {
-  body {
-    background-attachment: fixed;
-  }
-  .twist-list-wrapper {
-    width: 340px;
-    margin: 20px auto 20px auto;
-    padding: 20px;
-    #sortable-twist-list {
-      width: 300px;
-      padding: 10px 10px 10px 75px;
-      font-size: 30px;
-      img{
-        max-width: 200px;
-      }
-    }
-  }
-}
-
 #twistigation {
   position: fixed;
   top: 0;
@@ -202,4 +183,23 @@ footer {
   color: @light;
   font-family: 'Playball', cursive;
   &:hover{ color: @lightest; }
+}
+
+@media (min-width: 760px) {
+  body {
+    background-attachment: fixed;
+  }
+  .twist-list-wrapper {
+    width: 340px;
+    margin: 20px auto 20px auto;
+    padding: 20px;
+    #sortable-twist-list {
+      width: 300px;
+      padding: 10px 10px 10px 75px;
+      font-size: 30px;
+      img{
+        max-width: 200px;
+      }
+    }
+  }
 }
