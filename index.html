@@ -58,7 +58,11 @@ window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:
                         <div class="twist-wrapper" id="{{id}}">
                             <h1 class="text-center">{{name}}</h1>
                             <div class="image-wrapper">
-                                <img src="{{imageUrl}}.jpg" class="img-responsive img-circle" alt="{{name}}">
+                                <div class="image-background">
+                                    <img src="/pattern2.jpg"    class="img-responsive img-circle" alt="Image background">
+                                    <img src="{{imageUrl}}.jpg" class="top-image img-responsive img-circle" alt="{{name}}">
+                                    <div class="twist-stats"></div>
+                                </div>
                             </div>
                             <div class="row button-row">
                                 <a class="btn-twist btn-love text-left"   data-value="3" data-id="{{id}}"><i class="fa fa-smile-o"></i></a>

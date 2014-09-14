@@ -66,7 +66,7 @@ footer {
 }
 
 .twist-wrapper {
-    max-width: @element-width+@default-spacing;
+    max-width: @element-width+2*@default-spacing;
     margin: 0 auto;
     padding: @default-spacing;
     border: 1px dashed lighten(@dark, 10%);
@@ -74,21 +74,36 @@ footer {
     &:hover { border-color: lighten(@dark, 20%); transition: all @animation-time ease-in-out; }
     border-radius: 10px;
     margin-bottom: @default-spacing;
-    .image-wrapper {
-        padding: @default-spacing;
-        background: white;
-        border-radius: 50%;
-        max-width: @element-width;
-        margin: 0 auto;
-    }
     h1 {
         margin-top: 0;
         font-family: 'Playball', cursive;
         color: @lightest;
         text-decoration: underline;
     }
-    img {
-        margin: 0 auto;
+    .image-wrapper {
+        padding: @default-spacing;
+        max-width: @element-width;
+        background: white;
+        border-radius: 50%;
+    }
+    .image-background { 
+        border-radius: 50%;
+        max-width: @element-width;
+        position: relative;
+    }
+    .top-image {
+        position: absolute;
+        .center-absolute;
+        top: 0;
+    }
+    .twist-stats {
+        position: absolute;
+        .center-absolute;
+        bottom: 50px;
+        height: 100px;
+        background: red;
+        max-width: 150px;
+        display: none;
     }
     .button-row {
         height: 70px;
@@ -108,6 +123,13 @@ footer {
             &.btn-hate:hover{ color: #912929; }
         }
     }
+}
+
+.center-absolute {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 #twist-overview-template-output:last-child { padding-bottom: 70px; }

@@ -4,6 +4,14 @@ $(function () {
     var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
         twistListTemplate     = Handlebars.compile($("#twist-list-template").html());
     
+    function getTwistOrder() {
+        var order = "";
+        $("#sortable-twist-list li").each(function () {
+            order += $(this).data("charid");
+        });
+        return order;
+    }
+    
     function sortTwists(twistData, order) {
         var twists = twistData.twists,
             sortedTwists = [];
@@ -37,31 +45,7 @@ $(function () {
         $("#twist-list-template-output").html(twistListTemplate(twistData));
         $("#sortable-twist-list").sortable();
     }
-
-    function createOverview(twistData) {
-        $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
-        $(".twist-wrapper").last().css("margin-bottom", "70px"); //hack, not sure why needed...
-        $(".btn-twist").click(function () {
-            var id = $(this).data("id"),
-                rating = $(this).data("value");
-            $.ajax({
-                url: "http://twistrating.apiary-mock.com/twists",
-                type: "POST",
-                data: JSON.stringify({ "id" : id, "rating" : rating }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json"
-            });
-        });
-    }
     
-    function getTwistOrder() {
-        var order = "";
-        $("#sortable-twist-list li").each(function () {
-            order += $(this).data("charid");
-        });
-        return order;
-    }
-
     function createCopyLinkButton() {
         $(".copy-link").click(function () {
             $(".link-container").text("http://twistrating.no#" + getTwistOrder());
@@ -77,6 +61,39 @@ $(function () {
                 href: 'http://twistrating.no#' + getTwistOrder()
             }, function (response) {});
         });
+    }
+    
+    function sendRatingJSON(clickEvent) {
+        var id     = $(clickEvent).data("id"),
+            rating = $(clickEvent).data("value");
+        $.ajax({
+            url: "http://twistrating.apiary-mock.com/twists",
+            type: "POST",
+            data: JSON.stringify({ "id" : id, "rating" : rating }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        });
+    }
+    
+    function showStats(clickEvent) {
+        var $topImage   = $(clickEvent.parent().parent().find(".top-image")),
+            $twistStats = $(clickEvent.parent().parent().find(".twist-stats"));
+        $topImage.animate({height: "130px"}, 1000, function () {
+            $twistStats.show();    
+        });
+    }
+    
+    function createRatingButtons(twistData) {
+        $(".btn-twist").click(function () {
+            sendRatingJSON($(this));
+            showStats($(this));
+        });
+    }
+    
+    function createOverview(twistData) {
+        $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
+        $(".twist-wrapper").last().css("margin-bottom", "70px"); //hack, not sure why needed...
+        createRatingButtons();
     }
     
     function downloadTwistsAndBuildSite() {
