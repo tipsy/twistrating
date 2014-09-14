@@ -2,6 +2,9 @@
 $(function () {
     'use strict';
     
+    var apiBaseUrl = "http://twistrating.apiary-mock.com";
+    var publicBaseUrl = "http://twistrating.no";
+    
     var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
         twistListTemplate     = Handlebars.compile($("#twist-list-template").html());
     
@@ -49,8 +52,8 @@ $(function () {
     
     function createCopyLinkButton() {
         $(".copy-link").click(function () {
-            $(".link-container").text("http://twistrating.no#" + getTwistOrder());
-            $(".link-container").attr("href", "http://twistrating.no#" + getTwistOrder());
+            $(".link-container").text(publicBaseUrl + "#" + getTwistOrder());
+            $(".link-container").attr("href", publicBaseUrl + "#" + getTwistOrder());
         });
     }
 
@@ -59,7 +62,7 @@ $(function () {
             console.log("TwistRating: " + getTwistOrder());
             FB.ui({
                 method: 'share',
-                href: 'http://twistrating.no#' + getTwistOrder()
+                href: publicBaseUrl + '#' + getTwistOrder()
             }, function (response) {});
         });
     }
@@ -68,7 +71,7 @@ $(function () {
         var id     = $(clickEvent).data("id"),
             rating = $(clickEvent).data("value");
         $.ajax({
-            url: "http://twistrating.apiary-mock.com/twists",
+            url: apiBaseUrl + "/twists",
             type: "POST",
             data: JSON.stringify({ "id" : id, "rating" : rating }),
             contentType: "application/json; charset=utf-8",
@@ -132,7 +135,7 @@ $(function () {
     }
     
     function downloadTwistsAndBuildSite() {
-        $.getJSON("http://twistrating.apiary-mock.com/twists", function (data) {
+        $.getJSON(apiBaseUrl + "/twists", function (data) {
             createList(data);
             createOverview(data);
         }).done(function () {
