@@ -115,7 +115,6 @@ footer {
     width: 203px;
     margin: 0 auto;
     .btn-twist {
-      margin-right: 20px;
       font-size: 60px;
       text-align: center;
       cursor: pointer;
@@ -124,14 +123,18 @@ footer {
       &:last-child { margin-right: 0; }
       &:hover { transition: all @animation-time ease-in-out; }
       &.btn-love{
+        float: left;
         &:hover{ color: #134813; }
         &.pressed{ color: #134813; }
       }
       &.btn-soso{
+        display: block;
+        margin: 0 auto;
         &:hover{ color: #966c21; }
         &.pressed{ color: #966c21; }
       }
       &.btn-hate{
+        float: right;
         &:hover{ color: #912929; }
         &.pressed{ color: #912929; }
       }
