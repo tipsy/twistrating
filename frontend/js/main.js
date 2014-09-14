@@ -2,7 +2,8 @@
 $(function () {
     'use strict';
     
-    var apiBaseUrl = "http://twistrating.apiary-mock.com";
+    var apiBaseUrl = "http://localhost:9000";
+//    var apiBaseUrl = "http://twistrating.apiary-mock.com";
     var publicBaseUrl = "http://twistrating.no";
     
     var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
