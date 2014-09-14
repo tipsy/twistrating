@@ -34,8 +34,9 @@ public class Application extends Controller {
         List<Twist> twists = twistRating.getTwists();
         Map<String, Object> json = new HashMap<>();
         json.put("twists", twists);
-
         String data = stringFromJson(json);
+
+        response().setContentType("application/json; charset=utf-8");
         return ok(data);
     }
 
