@@ -24,6 +24,10 @@ public class Application extends Controller {
         this.twistRating = twistRating;
     }
 
+    public Result index() {
+        return ok(index.render("Your new application is ready."));
+    }
+
     @BodyParser.Of(BodyParser.Json.class)
     public Result getTwists() {
         List<Twist> twists = twistRating.getTwists();
