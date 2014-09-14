@@ -15,3 +15,7 @@ dist
 /RUNNING_PID
 /.settings
 /data
+activator-sbt-echo-akka-shim.sbt
+project/activator-sbt-echo-shim.sbt
+project/activator-sbt-eclipse-shim.sbt
+project/activator-sbt-idea-shim.sbt

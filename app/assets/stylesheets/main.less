@@ -6,175 +6,187 @@
 @animation-time: 250ms;
 @pagewidth: 1600px;
 
+html {
+  width: 100%;
+  height: 100%;
+}
+
 body {
-    background: @dark;
-    color: @light;
-    background: url(../images/pattern.jpg) repeat;
+  width: 100%;
+  height: 100%;
+  color: @light;
+  background-color: @dark;
+  background: url(../images/pattern.jpg) repeat;
+}
+
+@media (min-width: 760px) {
+  body {
     background-attachment: fixed;
+  }
 }
 
 #twistigation {
-    position: fixed;
-    top: 0; 
-    width: 100%;
-    background: url(../images/pattern.jpg) repeat;
-    z-index: 5;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.8);
-    height: 65px;
-    ul { 
-        max-width: @pagewidth;
-        list-style: none; 
-        padding: 0; 
-        margin: 0 auto;
-        margin-top: 5px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: url(../images/pattern.jpg) repeat;
+  z-index: 5;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.8);
+  height: 65px;
+  ul {
+    max-width: @pagewidth;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    margin-top: 5px;
+  }
+  li {
+    display: inline;
+    font-family: 'Playball', cursive;
+    font-size: 40px;
+    a {
+      color: @light;
+      padding: @default-spacing;
     }
-    li { 
-        display: inline; 
-        font-family: 'Playball', cursive;
-        font-size: 40px;
-        a { 
-            color: @light; 
-            padding: @default-spacing;
-        }
-        &.active a { 
-            color: @lightest;
-            text-decoration: underline 
-        }
+    &.active a {
+      color: @lightest;
+      text-decoration: underline
     }
+  }
 }
 
-.tab-content { 
-    max-width: @pagewidth;
-    margin: 0 auto;
-    height: 100%;
-    padding: 90px 0;
+.tab-content {
+  max-width: @pagewidth;
+  margin: 0 auto;
+  height: 100%;
+  padding: 90px 0;
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background: url(../images/pattern.jpg) repeat;
-    z-index: 5;
-    color: @light;
-    padding: @default-spacing;
-    box-shadow: 0 -5px 5px rgba(0,0,0,0.8);
-    a {
-        color: @lightest;
-        &:hover{ color: @lightest; }
-    }
+  position: fixed;
+  bottom: -1px;
+  width: 100%;
+  background: url(../images/pattern.jpg) repeat;
+  z-index: 5;
+  color: @light;
+  padding: @default-spacing;
+  box-shadow: 0 -5px 5px rgba(0,0,0,0.8);
+  a {
+    color: @lightest;
+    &:hover{ color: @lightest; }
+  }
 }
 
 .twist-wrapper {
-    max-width: @element-width+2*@default-spacing;
-    margin: 0 auto;
+  max-width: @element-width+2*@default-spacing;
+  margin: 0 auto;
+  padding: @default-spacing;
+  border: 1px dashed lighten(@dark, 10%);
+  transition: all @animation-time ease-in-out;
+  &:hover { border-color: lighten(@dark, 20%); transition: all @animation-time ease-in-out; }
+  border-radius: 10px;
+  margin-bottom: @default-spacing;
+  h1 {
+    margin-top: 0;
+    font-family: 'Playball', cursive;
+    color: @lightest;
+    text-decoration: underline;
+  }
+  .image-wrapper {
     padding: @default-spacing;
-    border: 1px dashed lighten(@dark, 10%);
-    transition: all @animation-time ease-in-out;
-    &:hover { border-color: lighten(@dark, 20%); transition: all @animation-time ease-in-out; }
-    border-radius: 10px;
-    margin-bottom: @default-spacing;
-    h1 {
-        margin-top: 0;
-        font-family: 'Playball', cursive;
-        color: @lightest;
-        text-decoration: underline;
+    max-width: @element-width;
+    background: white;
+    border-radius: 50%;
+  }
+  .image-background {
+    border-radius: 50%;
+    max-width: @element-width;
+    position: relative;
+  }
+  .top-image {
+    position: absolute;
+    .center-absolute;
+    top: 0;
+  }
+  .twist-stats {
+    position: absolute;
+    .center-absolute;
+    bottom: 50px;
+    height: 100px;
+    max-width: 150px;
+    display: none;
+  }
+  .button-row {
+    height: 70px;
+    width: 203px;
+    margin: 0 auto;
+    .btn-twist {
+      margin-right: 20px;
+      font-size: 60px;
+      text-align: center;
+      cursor: pointer;
+      color: lighten(@dark, 10);
+      transition: all @animation-time ease-in-out;
+      &:last-child { margin-right: 0; }
+      &:hover { transition: all @animation-time ease-in-out; }
+      &.btn-love{
+        &:hover{ color: #134813; }
+        &.pressed{ color: #134813; }
+      }
+      &.btn-soso{
+        &:hover{ color: #966c21; }
+        &.pressed{ color: #966c21; }
+      }
+      &.btn-hate{
+        &:hover{ color: #912929; }
+        &.pressed{ color: #912929; }
+      }
     }
-    .image-wrapper {
-        padding: @default-spacing;
-        max-width: @element-width;
-        background: white;
-        border-radius: 50%;
-    }
-    .image-background { 
-        border-radius: 50%;
-        max-width: @element-width;
-        position: relative;
-    }
-    .top-image {
-        position: absolute;
-        .center-absolute;
-        top: 0;
-    }
-    .twist-stats {
-        position: absolute;
-        .center-absolute;
-        bottom: 50px;
-        height: 100px;
-        max-width: 150px;
-        display: none;
-    }
-    .button-row {
-        height: 70px;
-        width: 203px;
-        margin: 0 auto;
-        .btn-twist {
-            margin-right: 20px;
-            font-size: 60px;
-            text-align: center;
-            cursor: pointer;
-            color: lighten(@dark, 10);
-            transition: all @animation-time ease-in-out;
-            &:last-child { margin-right: 0; }
-            &:hover { transition: all @animation-time ease-in-out; }
-            &.btn-love{
-                &:hover{ color: #134813; }
-                &.pressed{ color: #134813; }
-            }
-            &.btn-soso{
-                &:hover{ color: #966c21; }
-                &.pressed{ color: #966c21; }
-            }
-            &.btn-hate{
-                &:hover{ color: #912929; }
-                &.pressed{ color: #912929; }
-            }
-        }
-    }
+  }
 }
 
 .center-absolute {
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
-#twist-overview-template-output:last-child { padding-bottom: 70px; }
+#rating-section { margin-bottom: 70px;}
 
 #rating-section h1{ font-family: 'Playball', cursive; }
 
 .twist-list-wrapper {
-    width: 340px;
-    background-color: white;
+  width: 340px;
+  background-color: white;
+  border-radius: 10px;
+  margin: 20px auto 20px auto;
+  padding: 20px;
+  #sortable-twist-list {
+    margin: 0;
+    width: 300px;
     border-radius: 10px;
-    margin: 20px auto 20px auto;
-    padding: 20px; 
-    #sortable-twist-list {
-        margin: 0;
-        width: 300px;
-        border-radius: 10px;
-        color: @dark;
-        background: url(../images/pattern2.jpg) repeat;
-        padding: 10px 10px 10px 75px;
-        font-family: 'Playball', cursive;
-        font-size: 30px;
-        img{
-            max-width: 200px;
-        }
+    color: @dark;
+    background: url(../images/pattern2.jpg) repeat;
+    padding: 10px 10px 10px 75px;
+    font-family: 'Playball', cursive;
+    font-size: 30px;
+    img{
+      max-width: 200px;
     }
+  }
 }
 
 .share-link {
-    cursor: pointer;
-    font-family: 'Playball', cursive;
-    &:hover{ color: @lightest; text-decoration: underline; }
+  cursor: pointer;
+  font-family: 'Playball', cursive;
+  &:hover{ color: @lightest; text-decoration: underline; }
 }
 
 .link-container {
-    display:block;
-    font-size: 20px;
-    color: @light;
-    font-family: 'Playball', cursive;
-    &:hover{ color: @lightest; }
+  display:block;
+  font-size: 20px;
+  color: @light;
+  font-family: 'Playball', cursive;
+  &:hover{ color: @lightest; }
 }
