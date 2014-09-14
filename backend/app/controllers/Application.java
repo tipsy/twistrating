@@ -8,6 +8,7 @@ import play.mvc.Controller;
 import play.mvc.Result;
 import twistrating.TwistRating;
 import twistrating.views.Twist;
+import views.html.index;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
