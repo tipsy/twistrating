@@ -1,4 +1,4 @@
-# Twistrating
+# TwistRating
 
 ## Prerequisites
 
