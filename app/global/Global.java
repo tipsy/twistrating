@@ -1,5 +1,7 @@
 package global;
 
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -31,6 +33,9 @@ public class Global extends GlobalSettings {
     private static final File eventStoreFolder = new File("./data/events/");
     private static final File twistsDataFile = new File("./conf/twists.json");
 
+    private static final String firebaseUrl = "https://radiant-heat-8671.firebaseio.com/twists/";
+    private static final String firebareAuthToken = "bSPSHs8vdZt8SA30MLms69gxb9QqcBkT3KsRZCjC";
+
     private final Injector injector = createInjector();
 
     @Override
@@ -50,6 +55,25 @@ public class Global extends GlobalSettings {
         return Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
+                // Connect to firebase
+                Firebase firebase = new Firebase(firebaseUrl);
+                firebase.auth(firebareAuthToken, new Firebase.AuthListener() {
+                    @Override
+                    public void onAuthError(FirebaseError error) {
+                        Logger.debug("Login Failed! " + error.getMessage());
+                    }
+
+                    @Override
+                    public void onAuthSuccess(Object authData) {
+                        Logger.debug("Login Succeeded!");
+                    }
+
+                    @Override
+                    public void onAuthRevoked(FirebaseError error) {
+                        Logger.debug("Authentication status was cancelled! " + error.getMessage());
+                    }
+                });
+
                 // Event store
                 CommandBus commandBus = new SimpleCommandBus();
                 CommandGateway commandGateway = new DefaultCommandGateway(commandBus);
@@ -63,7 +87,7 @@ public class Global extends GlobalSettings {
 
                 // Event store handlers
                 AggregateAnnotationCommandHandler.subscribe(Rating.class, repository, commandBus);
-                AnnotationEventListenerAdapter.subscribe(new RatingEventHandler(), eventBus);
+                AnnotationEventListenerAdapter.subscribe(new RatingEventHandler(firebase), eventBus);
 
                 // Load twist config
                 TwistProvider twistProvider = new TwistProvider(twistsDataFile);
@@ -80,6 +104,7 @@ public class Global extends GlobalSettings {
                 // Set up bindings
                 bind(TwistRating.class).toInstance(twistRating);
                 bind(TwistProvider.class).toInstance(twistProvider);
+                bind(Firebase.class).toInstance(firebase);
 
                 Logger.info("Injector configured");
             }

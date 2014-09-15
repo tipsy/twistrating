@@ -1,0 +1,121 @@
+{
+    "twists": {
+        "daim": {
+            "id": "daim",
+            "name": "Daim",
+            "imageUrl": "daim",
+            "charId": "a",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "cocos": {
+            "id": "cocos",
+            "name": "Cocos",
+            "imageUrl": "cocos",
+            "charId": "n",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "chocolatetoffee": {
+            "id": "chocolatetoffee",
+            "name": "Chocolate Toffee",
+            "imageUrl": "chocolatetoffee",
+            "charId": "c",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "japp": {
+            "id": "japp",
+            "name": "Japp",
+            "imageUrl": "japp",
+            "charId": "m",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "aprikos": {
+            "id": "aprikos",
+            "name": "Aprikos",
+            "imageUrl": "aprikos",
+            "charId": "e",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "banan": {
+            "id": "banan",
+            "name": "Banan",
+            "imageUrl": "banan",
+            "charId": "o",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "lakris": {
+            "id": "lakris",
+            "name": "Lakris",
+            "imageUrl": "lakris",
+            "charId": "u",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "nougatcrisp": {
+            "id": "nougatcrisp",
+            "name": "Nougat Crisp",
+            "imageUrl": "nougatcrisp",
+            "charId": "w",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "noetti": {
+            "id": "noetti",
+            "name": "Nøtti",
+            "imageUrl": "noetti",
+            "charId": "v",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "marsipan": {
+            "id": "marsipan",
+            "name": "Marsipan",
+            "imageUrl": "marsipan",
+            "charId": "z",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "fransknougat": {
+            "id": "fransknougat",
+            "name": "Fransk Nougat",
+            "imageUrl": "fransknougat",
+            "charId": "x",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "caramel": {
+            "id": "caramel",
+            "name": "Caramel",
+            "imageUrl": "caramel",
+            "charId": "r",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        },
+        "goldentoffee": {
+            "id": "goldentoffee",
+            "name": "Golden Toffee",
+            "imageUrl": "goldentoffee",
+            "charId": "s",
+            "likeCount": 0,
+            "neutralCount": 0,
+            "dislikeCount": 0
+        }
+    }
+}
