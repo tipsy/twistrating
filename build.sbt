@@ -17,5 +17,7 @@ libraryDependencies ++= Seq(
   "org.xerial" % "sqlite-jdbc" % "3.7.2",
   "org.axonframework" % "axon-core" % "2.3.1",
   "org.axonframework" % "axon-test" % "2.3.1",
-  "com.firebase" % "firebase-client" % "1.0.17"
+  "com.firebase" % "firebase-client" % "1.0.17",
+  "org.webjars" %% "webjars-play" % "2.3.0",
+  "org.webjars" % "firebase" % "1.0.17"
 )

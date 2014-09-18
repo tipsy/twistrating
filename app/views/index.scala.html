@@ -79,11 +79,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 </div>
 
-
-
-
-
-
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -96,6 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script src="@routes.Assets.at("javascripts/main.js")"></script>
+<script src='@routes.WebJarAssets.at(WebJarAssets.locate("firebase.js"))'></script>
 <script src="@routes.Assets.at("javascripts/chart.min.js")"></script>
+<script src="@routes.Assets.at("javascripts/main.js")"></script>
 }
