@@ -5,6 +5,11 @@ $(function () {
     var apiBaseUrl = window.location.protocol + "//" + window.location.host;
 //    var apiBaseUrl = "http://twistrating.apiary-mock.com";
     var publicBaseUrl = window.location.protocol + "//" + window.location.host;
+
+    var firebase = new Firebase("https://radiant-heat-8671.firebaseio.com/twists");
+    firebase.on("value", function (dataSnapshot) {
+        console.log(dataSnapshot.val());
+    });
     
     var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
         twistListTemplate     = Handlebars.compile($("#twist-list-template").html());
