@@ -1,19 +1,19 @@
 /*global $:false, Handlebars:false, console:false, FB: false, alert: false, Chart: false*/
 $(function () {
     'use strict';
-    
-    var apiBaseUrl = window.location.protocol + "//" + window.location.host;
+
 //    var apiBaseUrl = "http://twistrating.apiary-mock.com";
-    var publicBaseUrl = window.location.protocol + "//" + window.location.host;
+    var apiBaseUrl            = window.location.protocol + "//" + window.location.host,
+        publicBaseUrl         = window.location.protocol + "//" + window.location.host,
+        twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
+        twistListTemplate     = Handlebars.compile($("#twist-list-template").html()),
+        global_chartArray     = new Array();
 
     var firebase = new Firebase("https://radiant-heat-8671.firebaseio.com/twists");
     firebase.on("value", function (dataSnapshot) {
         console.log(dataSnapshot.val());
     });
-    
-    var twistOverviewTemplate = Handlebars.compile($("#twist-overview-template").html()),
-        twistListTemplate     = Handlebars.compile($("#twist-list-template").html());
-    
+
     function getTwistOrder() {
         var order = "";
         $("#sortable-twist-list li").each(function () {
@@ -35,22 +35,22 @@ $(function () {
         return { twists : sortedTwists };
     }
     
-    function goToOrderPage() {
-        $("#rate,#rate-tab").addClass("active in");
+    function gotToListPage() {
+        $("#list-page,#list-tab").addClass("active in");
     }
 
-    function goToOverviewPage() {
-        $("#overview,#overview-tab").addClass("active in");
+    function goToVotePage() {
+        $("#vote-tab,#vote-page").addClass("active in");
     }
 
-    function createList(twistData) {
+    function createListPage(twistData) {
         var order = $(location).attr('href').split("#")[1] || "fail",
             sortedTwists = sortTwists(twistData, order);
         if (sortedTwists.twists.length === twistData.twists.length) {
             twistData = sortedTwists;
-            goToOrderPage();
+            gotToListPage();
         } else {
-            goToOverviewPage();
+            goToVotePage();
         }
         $("#twist-list-template-output").html(twistListTemplate(twistData));
         new Sortable(document.getElementById("sortable-twist-list"));
@@ -58,14 +58,14 @@ $(function () {
     
     function createCopyLinkButton() {
         $(".copy-link").click(function () {
-            $(".link-container").text(publicBaseUrl + "#" + getTwistOrder());
-            $(".link-container").attr("href", publicBaseUrl + "#" + getTwistOrder());
+            var $shareLinkDiv = $(".link-container");
+            $shareLinkDiv.text(publicBaseUrl + "#" + getTwistOrder());
+            $shareLinkDiv.attr("href", publicBaseUrl + "#" + getTwistOrder());
         });
     }
 
     function createFacebookShareButton() {
         $(".share-on-facebook").click(function () {
-            console.log("TwistRating: " + getTwistOrder());
             FB.ui({
                 method: 'share',
                 href: publicBaseUrl + '#' + getTwistOrder()
@@ -73,9 +73,7 @@ $(function () {
         });
     }
     
-    function sendRatingJSON(clickEvent) {
-        var id     = $(clickEvent).data("id"),
-            rating = $(clickEvent).data("value");
+    function sendRatingJSON(id, rating) {
         $.ajax({
             url: apiBaseUrl + "/twists",
             type: "POST",
@@ -84,13 +82,17 @@ $(function () {
             dataType: "json"
         });
     }
+
+    function statsVisible($twist){
+        return $twist.find(".twist-stats").is(":visible");
+    }
     
-    function buildChart(clickEvent) {
-        var $twistStats = $(clickEvent.parent().parent().find(".twist-stats")),
-            loves = $twistStats.data("loves"),
+    function buildChart($twist, $twistStats) {
+        var loves = $twistStats.data("loves"),
             sosos = $twistStats.data("sosos"),
             hates = $twistStats.data("hates"),
-            data = {
+            id    = $twist.data("id"),
+            data  = {
                 labels: ["Nam", "Hm", "Æsj"],
                 datasets: [
                     {
@@ -104,49 +106,61 @@ $(function () {
             options = {
                 animation: true,
                 barShowStroke : false
-            },
-            myNewChart = new Chart($twistStats.get(0).getContext('2d')).Bar(data, options);
+            };
+            global_chartArray[id] = new Chart($twistStats.get(0).getContext('2d')).Bar(data, options);
     }
     
-    function showStats(clickEvent) {
-        var $topImage   = $(clickEvent.parent().parent().find(".top-image")),
-            $twistStats = $(clickEvent.parent().parent().find(".twist-stats")),
-            currentWidth = clickEvent.parent().parent().find(".image-wrapper").width();
+    function toggleStats($twist) {
+        var $twistImage = $($twist.find(".top-image")),
+            $twistStats = $($twist.find(".twist-stats")),
+            currentWidth = $twist.find(".image-wrapper").width();
         
-        if (!$twistStats.is(":visible")) {
-            $topImage.animate({height: "130px"}, 1000);
+        if (!statsVisible($twist)) {
+            $twistImage.animate({height: "130px"}, 1000);
             setTimeout(function () {
                 $twistStats.fadeIn(200);
-                buildChart(clickEvent);
+                buildChart($twist, $twistStats);
             }, 400);
         } else {
-            //$twistStats.fadeOut(600);
-            //$topImage.animate({height: currentWidth + "px"}, 1000);
+            $twistStats.fadeOut(600);
+            $twistImage.animate({height: currentWidth + "px"}, 1000);
         }
     }
     
-    function createRatingButtons(twistData) {
+    function createRatingSmileyClickListeners() {
         $(".btn-twist").click(function () {
-            $(this).addClass("pressed");
-            $(this).siblings().removeClass("pressed");
-            sendRatingJSON($(this));
-            showStats($(this));
+            var button = $(this);
+            var id     = button.data("id"),
+                value  = button.data("value"),
+                $twist = $("#"+id);
+            button.addClass("pressed").siblings().removeClass("pressed");
+            sendRatingJSON(id, value);
+            if(!statsVisible($twist)){
+                toggleStats($twist);
+            }
         });
     }
     
-    function createOverview(twistData) {
+    function createRatePage(twistData) {
         $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
-        createRatingButtons();
+        createRatingSmileyClickListeners();
+        createNameAndImageWrapperClickListeners();
     }
     
     function downloadTwistsAndBuildSite() {
         $.getJSON(apiBaseUrl + "/twists", function (data) {
-            createList(data);
-            createOverview(data);
+            createListPage(data);
+            createRatePage(data);
         }).done(function () {
             console.log("Lastet ned twist fra APIet");
         }).fail(function () {
-            alert("Fant ingen twist i APIet... :/");
+            alert("Noen har spist all twisten i APIet... :/");
+        });
+    }
+
+    function createNameAndImageWrapperClickListeners() {
+        $(".twist-name, .image-wrapper").click(function(){
+            toggleStats($("#"+$(this).data("id")));
         });
     }
     

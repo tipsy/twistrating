@@ -17,22 +17,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <nav id="twistigation">
     <ul role="tablist">
-        <li id="overview-tab"><a href="#overview" role="tab" data-toggle="tab">Oversikt</a></li>
-        <li id="rate-tab"><a href="#rate" role="tab" data-toggle="tab">Ranger</a></li>
+        <li id="vote-tab"><a href="#vote-page" role="tab" data-toggle="tab">Stem</a></li>
+        <li id="list-tab"><a href="#list-page" role="tab" data-toggle="tab">Lag liste</a></li>
     </ul>
 </nav>
 
 <div class="tab-content">
 
-    <div class="tab-pane fade" id="overview">
+    <div class="tab-pane fade" id="vote-page">
         <section id="overview-section">
             <div id="twist-overview-template-output"></div>
             <script id="twist-overview-template" type="text/x-handlebars-template">
                 {{#twists}}
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="twist-wrapper" id="{{id}}">
-                        <h1 class="text-center">{{name}}</h1>
-                        <div class="image-wrapper">
+                    <div class="twist-wrapper" data-id="{{id}}" id="{{id}}">
+                        <h1 class="text-center twist-name" data-id="{{id}}">{{name}}</h1>
+                        <div class="image-wrapper" data-id="{{id}}">
                             <div class="image-background">
                                 <img src="@routes.Assets.at("images/pattern2.jpg")" class="img-responsive img-circle" alt="Image background">
                                 <img src="@routes.Assets.at("images/twists/{{imageUrl}}.jpg")" class="top-image img-responsive img-circle" alt="{{name}}">
@@ -55,7 +55,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </section>
     </div>
 
-    <div class="tab-pane fade" id="rate">
+    <div class="tab-pane fade" id="list-page">
         <section id="rating-section">
             <h1 class="text-center">Trykk og dra for å bytte plass på twistene</h1>
             <div id="twist-list-template-output"></div>
@@ -81,6 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="@routes.Assets.at("javascripts/jquery.requestAnimationFrame.min.js")"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
 <script src="@routes.Assets.at("javascripts/Sortable.min.js")"></script>
