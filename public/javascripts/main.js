@@ -30,12 +30,12 @@ $(function () {
         return { twists : sortedTwists };
     }
     
-    function goToOrderPage() {
-        $("#rate,#rate-tab").addClass("active in");
+    function gotToListPage() {
+        $("#list-page,#list-tab").addClass("active in");
     }
 
-    function goToOverviewPage() {
-        $("#overview,#overview-tab").addClass("active in");
+    function goToVotePage() {
+        $("#vote-tab,#vote-page").addClass("active in");
     }
 
     function createList(twistData) {
@@ -43,9 +43,9 @@ $(function () {
             sortedTwists = sortTwists(twistData, order);
         if (sortedTwists.twists.length === twistData.twists.length) {
             twistData = sortedTwists;
-            goToOrderPage();
+            gotToListPage();
         } else {
-            goToOverviewPage();
+            goToVotePage();
         }
         $("#twist-list-template-output").html(twistListTemplate(twistData));
         new Sortable(document.getElementById("sortable-twist-list"));
