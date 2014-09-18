@@ -125,8 +125,8 @@ $(function () {
     function createRatingButtons() {
         $(".btn-twist").click(function () {
             var button = $(this);
-            var id      = button.data("id"),
-                value = button.data("value"),
+            var id     = button.data("id"),
+                value  = button.data("value"),
                 $twist = $("#"+id);
             button.addClass("pressed").siblings().removeClass("pressed");
             sendRatingJSON(id, value);
