@@ -149,10 +149,22 @@ $(function () {
         $(".twist-name, .image-wrapper").each(function (){
             var $twist = $("#"+$(this).data("id"));
             var $twistStats = $($twist.find(".twist-stats"));
-
             var chart = buildChart($twistStats);
             global_chartArray[$twist.data("id")] = chart;
         });
+    }
+
+    function needsUpdating(chart, data) {
+        return chart.datasets[0].bars[0].value !== data.likeCount
+            || chart.datasets[0].bars[1].value !== data.neutralCount
+            || chart.datasets[0].bars[2].value !== data.dislikeCount;
+    }
+
+    function updateChart(chart, data) {
+        chart.datasets[0].bars[0].value = data.likeCount;
+        chart.datasets[0].bars[1].value = data.neutralCount;
+        chart.datasets[0].bars[2].value = data.dislikeCount;
+        chart.update();
     }
     
     createFacebookShareButton();
@@ -160,28 +172,27 @@ $(function () {
 
     var firebase = new Firebase(firebaseUrl);
 
-    var isSiteBuilt = false;
+    var siteBuilt = false;
+
     firebase.on("value", function (dataSnapshot) {
-        var twistData = dataSnapshot.val();
-        var twists = Object.keys(twistData).map(function (key) {
-            return twistData[key];
+        var snapshotValue = dataSnapshot.val();
+        var newTwistData = Object.keys(snapshotValue).map(function (key) {
+            return snapshotValue[key];
         });
 
-        if (isSiteBuilt === false) {
-            var wrappedTwists = {twists: twists};
+        if (!siteBuilt) {
+            var wrappedTwists = {twists: newTwistData};
             createListPage(wrappedTwists);
             createRatePage(wrappedTwists);
-
-            isSiteBuilt = true;
+            siteBuilt = true;
         }
 
-        twists.forEach(function (twist) {
-            var chart = global_chartArray[twist.id];
+        newTwistData.forEach(function (newData) {
+            var chart = global_chartArray[newData.id];
+            if(needsUpdating(chart, newData)){
+                updateChart(chart, newData);
+            }
 
-            chart.datasets[0].bars[0].value = twist.likeCount;
-            chart.datasets[0].bars[1].value = twist.neutralCount;
-            chart.datasets[0].bars[2].value = twist.dislikeCount;
-            chart.update();
         });
     });
 });
