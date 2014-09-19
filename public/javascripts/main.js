@@ -11,7 +11,7 @@ $(function () {
     
     function getTwistOrder() {
         var order = "";
-        $("#sortable-twist-list li").each(function () {
+        $(".sortable-twist-element").each(function () {
             order += $(this).data("charid");
         });
         return order;
@@ -162,5 +162,5 @@ $(function () {
     createCopyLinkButton();
     createTwistNameClickListeners();
     downloadTwistsAndBuildSite();
-    
+
 });

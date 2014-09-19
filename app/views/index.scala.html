@@ -63,7 +63,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="twist-list-wrapper">
                     <ol id="sortable-twist-list" class="sortable list">
                         {{#twists}}
-                        <li data-charid="{{charId}}" draggable="true"><img src="@routes.Assets.at("images/twists/{{imageUrl}}_small.jpg")" alt="{{name}}"></li>
+                        <li class="sortable-twist-element" data-charid="{{charId}}" draggable="true"><img src="@routes.Assets.at("images/twists/{{imageUrl}}_small.jpg")" alt="{{name}}"></li>
                         {{/twists}}
                     </ol>
                 </div>
