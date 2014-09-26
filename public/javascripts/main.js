@@ -75,6 +75,11 @@ $(function () {
             data: JSON.stringify({ "id" : id, "rating" : rating }),
             contentType: "application/json; charset=utf-8",
             dataType: "json"
+        }).done(function(data){
+            setTimeout(function(){
+                console.log(data);
+                updateChart(data.id, data.likeCount, data.neutralCount, data.dislikeCount);
+            }, 1200);
         });
     }
 
@@ -104,11 +109,20 @@ $(function () {
             };
             global_chartArray[id] = new Chart($twistStats.get(0).getContext('2d')).Bar(data, options);
     }
+
+    function updateChart(id, loves, sosos, hates) {
+        console.log(id);
+        var chart = global_chartArray[id];
+        chart.datasets[0].bars[0].value = loves;
+        chart.datasets[0].bars[1].value = sosos;
+        chart.datasets[0].bars[2].value = hates;
+        chart.update();
+    }
     
     function toggleStats($twist) {
         var $twistImage = $($twist.find(".top-image")),
             $twistStats = $($twist.find(".twist-stats")),
-            currentWidth = $twist.find(".image-wrapper").width();
+            currentWidth =  $twist.find(".image-wrapper").width();
         
         if (!statsVisible($twist)) {
             $twistImage.animate({height: "130px"}, 1000);
