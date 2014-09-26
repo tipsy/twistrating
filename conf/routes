@@ -4,6 +4,7 @@
 
 # Home page
 GET     /                           @controllers.Application.index()
+GET     /twist/:id                  @controllers.Application.getTwist(id: String)
 GET     /twists                     @controllers.Application.getTwists()
 POST    /twists                     @controllers.Application.rateTwist()
 

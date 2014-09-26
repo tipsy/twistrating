@@ -44,12 +44,20 @@ public class Application extends Controller {
     }
 
     @BodyParser.Of(BodyParser.Json.class)
+    public Result getTwist(String id) {
+        Twist twist = Twist.find.byId(id);
+        return ok(toJson(twist));
+    }
+
+
+    @BodyParser.Of(BodyParser.Json.class)
     public Result rateTwist() {
         JsonNode json = request().body().asJson();
         String twistId = json.get("id").asText();
         int rating = json.get("rating").asInt(-1);
 
         twistRating.rateTwist(twistId, rating);
+
 
         Twist twist = Twist.find.byId(twistId);
         return ok(toJson(twist));
