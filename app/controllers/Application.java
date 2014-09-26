@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static play.libs.Json.toJson;
+
 public class Application extends Controller {
     private final TwistRating twistRating;
 
@@ -49,7 +51,8 @@ public class Application extends Controller {
 
         twistRating.rateTwist(twistId, rating);
 
-        return ok();
+        Twist twist = Twist.find.byId(twistId);
+        return ok(toJson(twist));
     }
 
     private String getSessionId() {
