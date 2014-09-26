@@ -1,19 +1,7 @@
-@main() {
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-W4XBCK"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-W4XBCK');</script>
-<!-- End Google Tag Manager -->
+@main() {   </p>
 
-<!-- Facebook SDK -->
-<script>
-    window.fbAsyncInit=function(){FB.init({appId:"147472285423371",xfbml:!0,version:"v2.1"})},function(e,n,t){var o,c=e.getElementsByTagName(n)[0];e.getElementById(t)||(o=e.createElement(n),o.id=t,o.src="//connect.facebook.net/en_US/sdk.js",c.parentNode.insertBefore(o,c))}(document,"script","facebook-jssdk");
-</script>
-<!-- End Facebook SDK -->
+@views.html.partials.gtm()
+@views.html.partials.facebookSDK()
 
 <nav id="twistigation">
     <ul role="tablist">
@@ -84,6 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 
 
+
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="@routes.Assets.at("javascripts/jquery.requestAnimationFrame.min.js")"></script>
@@ -99,4 +88,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <![endif]-->
 <script src="@routes.Assets.at("javascripts/main.js")"></script>
 <script src="@routes.Assets.at("javascripts/chart.min.js")"></script>
+
 }
+
