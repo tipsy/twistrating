@@ -122,7 +122,7 @@ $(function () {
         }
     }
     
-    function createRatingButtons() {
+    function createRatingSmileyClickListeners() {
         $(".btn-twist").click(function () {
             var button = $(this);
             var id     = button.data("id"),
@@ -138,7 +138,8 @@ $(function () {
     
     function createRatePage(twistData) {
         $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
-        createRatingButtons();
+        createRatingSmileyClickListeners();
+        createNameAndImageWrapperClickListeners();
     }
     
     function downloadTwistsAndBuildSite() {
@@ -152,15 +153,14 @@ $(function () {
         });
     }
 
-    function createTwistNameClickListeners() {
-        $(".twist-name").click(function(){
-            toggleStats($(this));
+    function createNameAndImageWrapperClickListeners() {
+        $(".twist-name, .image-wrapper").click(function(){
+            toggleStats($("#"+$(this).data("id")));
         });
     }
     
     createFacebookShareButton();
     createCopyLinkButton();
-    createTwistNameClickListeners();
     downloadTwistsAndBuildSite();
 
 });
