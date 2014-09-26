@@ -6,6 +6,10 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
+LessKeys.sourceMap in Assets := true
+
+LessKeys.compress in Assets := true
+
 scalaVersion := "2.11.1"
 
 libraryDependencies ++= Seq(
