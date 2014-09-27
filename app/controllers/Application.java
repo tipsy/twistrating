@@ -75,9 +75,7 @@ public class Application extends Controller {
         int previousRating = ratings.get(twistId).asInt();
 
         if (rating != previousRating){
-            //Todo: cancel previous vote
-            System.out.println("RATE " + twistId + " : " + rating);
-            twistRating.rateTwist(twistId, rating);
+            twistRating.changeTwistRating(twistId, previousRating, rating);
 
             ((ObjectNode)ratings).put(twistId, rating);
             session("ratings", Json.stringify(ratings));
