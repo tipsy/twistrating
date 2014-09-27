@@ -180,4 +180,20 @@ $(function () {
     createCopyLinkButton();
     downloadTwistsAndBuildSite();
 
+    setInterval(function() {  //update opened twists every 5 seconds
+        $(".twist-wrapper").each(function() {
+            if ( $(this).find(".twist-stats").is(":visible") ) {
+                var id = ($(this).data("id"));
+                $.getJSON( "/twist/"+id, function(data) {
+                    var twist = data;
+                    updateChart(data.id, data.likeCount, data.neutralCount, data.dislikeCount);
+                }).done(function() {
+                    console.log( "Liveupdate successful" );
+                }).fail(function() {
+                    console.log( "Liveupdate failed" );
+                });
+            }
+        });
+    }, 5000);
+
 });
