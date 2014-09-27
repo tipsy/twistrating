@@ -1,4 +1,4 @@
-@()(content: Html)
+@(title: String)(content: play.twirl.api.Html)
 
 <!DOCTYPE html>
 <html lang="no">
@@ -10,7 +10,7 @@
         <meta name="description" content="Velkommen til TwistRating. Stem på dine favoritttwist og del din twistliste med en venn!">
         <meta name="author" content="">
 
-        <title>TwistRating. Ranger og del. Hvilken twist er best?</title>
+        <title>@title</title>
 
         <link rel="icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
 

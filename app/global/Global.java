@@ -20,14 +20,17 @@ import org.axonframework.eventstore.fs.SimpleEventFileResolver;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
+import play.api.mvc.RequestHeader;
+import play.libs.F.Promise;
+import play.mvc.Result;
 import twistrating.TwistRating;
 import twistrating.TwistRatingEventStore;
 import twistrating.aggregates.Rating;
 import twistrating.commands.CreateTwistCommand;
 import twistrating.eventhandlers.RatingEventHandler;
 import twistrating.models.providers.TwistProvider;
-
 import java.io.File;
+import static play.mvc.Results.notFound;
 
 public class Global extends GlobalSettings {
     private static final File eventStoreFolder = new File("./data/events/");
@@ -41,6 +44,12 @@ public class Global extends GlobalSettings {
     @Override
     public <A> A getControllerInstance(Class<A> controllerClass) throws Exception {
         return injector.getInstance(controllerClass);
+    }
+
+    public Promise<Result> onHandlerNotFound(RequestHeader request) {
+        return Promise.<Result>pure(notFound(
+                views.html.notFound.render(request.uri())
+        ));
     }
 
     public void onStart(Application app) {
