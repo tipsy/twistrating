@@ -60,7 +60,7 @@ public class Application extends Controller {
         int rating = json.get("rating").asInt(-1);
 
         if( ! hasBeenRated(twistId, rating)) {
-            System.out.println("RATE " + twistId + " : " + rating);
+//            System.out.println("RATE " + twistId + " : " + rating);
             twistRating.rateTwist(twistId, rating);
         } else {
             changeRating(twistId, rating);
@@ -84,7 +84,6 @@ public class Application extends Controller {
 
     private boolean hasBeenRated(String twistId, int rating) {
         String ratingsString = session("ratings");
-        System.out.println(session());
         JsonNode ratings;
         if (ratingsString != null) {
             ratings = Json.parse(ratingsString);
