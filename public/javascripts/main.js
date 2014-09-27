@@ -195,6 +195,7 @@ $(function () {
                 else if (ratings[key] === 0) button = " .btn-soso";
                 else if (ratings[key] === -1) button = " .btn-hate";
 
+                toggleStats($('#' + key));
                 $('#' + key + button).addClass('pressed');
             }
         }
