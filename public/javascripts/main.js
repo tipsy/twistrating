@@ -76,10 +76,7 @@ $(function () {
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function(data){
-            setTimeout(function(){
-                console.log(data);
-                updateChart(data.id, data.likeCount, data.neutralCount, data.dislikeCount);
-            }, 1200);
+            updateChart(data.id, data.likeCount, data.neutralCount, data.dislikeCount);
         });
     }
 
@@ -88,30 +85,33 @@ $(function () {
     }
     
     function buildChart($twist, $twistStats) {
-        var loves = $twistStats.data("loves"),
-            sosos = $twistStats.data("sosos"),
-            hates = $twistStats.data("hates"),
-            id    = $twist.data("id"),
-            data  = {
-                labels: ["Nam", "Hm", "Æsj"],
-                datasets: [
-                    {
-                        label: "",
-                        fillColor: "rgba(33,29,30,1)",
-                        highlightFill: "rgba(33,29,30,0.85)",
-                        data: [loves, sosos, hates]
-                    }
-                ]
-            },
-            options = {
-                animation: true,
-                barShowStroke : false
-            };
+        var id = $twist.data("id");
+        $.getJSON( "/twist/"+id, function(twistData) {
+            var twist = twistData,
+                data  = {
+                    labels: ["Nam", "Hm", "Æsj"],
+                    datasets: [
+                        {
+                            label: "",
+                            fillColor: "rgba(33,29,30,1)",
+                            highlightFill: "rgba(33,29,30,0.85)",
+                            data: [twist.likeCount, twist.neutralCount, twist.dislikeCount]
+                        }
+                    ]
+                },
+                options = {
+                    animation: true,
+                    barShowStroke : false
+                };
             global_chartArray[id] = new Chart($twistStats.get(0).getContext('2d')).Bar(data, options);
+        }).done(function() {
+                console.log( "Successfully built chart from JSON data" );
+        }).fail(function() {
+                console.log( "Fetching of JSON chart data failed" );
+        });
     }
 
     function updateChart(id, loves, sosos, hates) {
-        console.log(id);
         var chart = global_chartArray[id];
         chart.datasets[0].bars[0].value = loves;
         chart.datasets[0].bars[1].value = sosos;
@@ -143,9 +143,13 @@ $(function () {
                 value  = button.data("value"),
                 $twist = $("#"+id);
             button.addClass("pressed").siblings().removeClass("pressed");
-            sendRatingJSON(id, value);
             if(!statsVisible($twist)){
                 toggleStats($twist);
+                setTimeout(function(){ //let the chart build before sending rating and updating
+                    sendRatingJSON(id, value);
+                }, 1200);
+            } else {
+                sendRatingJSON(id, value);
             }
         });
     }
@@ -182,7 +186,6 @@ $(function () {
             var pair = rawPair.split('=');
             session[pair[0]] = decodeURIComponent(pair[1]);
         });
-
         return JSON.parse(session['ratings'].substr(0, session['ratings'].length-1));
     }
 
@@ -204,5 +207,21 @@ $(function () {
     createFacebookShareButton();
     createCopyLinkButton();
     downloadTwistsAndBuildSite();
+
+    setInterval(function() {  //update opened twists every 5 seconds
+        $(".twist-wrapper").each(function() {
+            if ( $(this).find(".twist-stats").is(":visible") ) {
+                var id = ($(this).data("id"));
+                $.getJSON( "/twist/"+id, function(data) {
+                    var twist = data;
+                    updateChart(data.id, data.likeCount, data.neutralCount, data.dislikeCount);
+                }).done(function() {
+                        console.log( "Liveupdate successful" );
+                    }).fail(function() {
+                        console.log( "Liveupdate failed" );
+                    });
+            }
+        });
+    }, 5000);
 
 });
