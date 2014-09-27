@@ -179,17 +179,6 @@ $(function () {
         });
     }
 
-    function getRatingFromCookie(){
-        var rawCookie = document.cookie;
-        var rawData = rawCookie.substring(rawCookie.indexOf('-') + 1, rawCookie.length -1);
-        var session = {};
-        rawData.split(";").forEach(function(rawPair){
-            var pair = rawPair.split('=');
-            session[pair[0]] = decodeURIComponent(pair[1]);
-        });
-        return JSON.parse(session['ratings'].substr(0, session['ratings'].length-1));
-    }
-
     function setInLocalStorage(id, value) {
         var ratings = localStorage.hasOwnProperty("ratings") ? JSON.parse(localStorage.getItem('ratings')) : {};
         ratings[id] = value;
