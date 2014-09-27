@@ -154,6 +154,7 @@ $(function () {
         $("#twist-overview-template-output").html(twistOverviewTemplate(twistData));
         createRatingSmileyClickListeners();
         createNameAndImageWrapperClickListeners();
+        setPressed();
     }
     
     function downloadTwistsAndBuildSite() {
@@ -175,22 +176,33 @@ $(function () {
 
     function getRatingFromCookie(){
         var rawCookie = document.cookie;
-        var rawData = rawCookie.substring(rawCookie.indexOf('-') + 1);
+        var rawData = rawCookie.substring(rawCookie.indexOf('-') + 1, rawCookie.length -1);
         var session = {};
-        console.log(rawData.split("&"));
-        rawData.split("&").forEach(function(rawPair){
+        rawData.split(";").forEach(function(rawPair){
             var pair = rawPair.split('=');
-            session[pair[0]] = pair[1];
-            console.log($.parseJSON(pair[1]));
+            session[pair[0]] = decodeURIComponent(pair[1]);
         });
 
-//    console.log(session);
+        return JSON.parse(session['ratings'].substr(0, session['ratings'].length-1));
     }
-    
+
+    function setPressed(){
+        var ratings = getRatingFromCookie();
+        for(var key in ratings){
+            var button;
+            console.log(ratings[key]);
+            if (ratings[key] === 1) button = " .btn-love";
+            else if (ratings[key] === 0) button = " .btn-soso";
+            else if (ratings[key] === -1) button = " .btn-hate";
+
+            console.log('#' + key + button);
+            $('#' + key + button).addClass('pressed');
+        }
+
+    }
+
     createFacebookShareButton();
     createCopyLinkButton();
     downloadTwistsAndBuildSite();
-
-    getRatingFromCookie();
 
 });
