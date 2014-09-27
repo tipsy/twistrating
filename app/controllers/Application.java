@@ -60,7 +60,7 @@ public class Application extends Controller {
         int rating = json.get("rating").asInt(-1);
 
         if( ! hasBeenRated(twistId, rating)) {
-//            System.out.println("RATE " + twistId + " : " + rating);
+            System.out.println("RATE " + twistId + " : " + rating);
             twistRating.rateTwist(twistId, rating);
         } else {
             changeRating(twistId, rating);

@@ -143,6 +143,7 @@ $(function () {
                 value  = button.data("value"),
                 $twist = $("#"+id);
             button.addClass("pressed").siblings().removeClass("pressed");
+            setInLocalStorage(id, value);
             if(!statsVisible($twist)){
                 toggleStats($twist);
                 setTimeout(function(){ //let the chart build before sending rating and updating
@@ -189,19 +190,25 @@ $(function () {
         return JSON.parse(session['ratings'].substr(0, session['ratings'].length-1));
     }
 
+    function setInLocalStorage(id, value) {
+        var ratings = localStorage.hasOwnProperty("ratings") ? JSON.parse(localStorage.getItem('ratings')) : {};
+        ratings[id] = value;
+        localStorage.setItem("ratings", JSON.stringify(ratings));
+    }
+
     function setPressed(){
-        var ratings = getRatingFromCookie();
-        for(var key in ratings){
-            var button;
-            console.log(ratings[key]);
-            if (ratings[key] === 1) button = " .btn-love";
-            else if (ratings[key] === 0) button = " .btn-soso";
-            else if (ratings[key] === -1) button = " .btn-hate";
 
-            console.log('#' + key + button);
-            $('#' + key + button).addClass('pressed');
+        if (localStorage.hasOwnProperty('ratings')){
+            var ratings = JSON.parse(localStorage.getItem('ratings'))
+            for(var key in ratings){
+                var button;
+                if (ratings[key] === 1) button = " .btn-love";
+                else if (ratings[key] === 0) button = " .btn-soso";
+                else if (ratings[key] === -1) button = " .btn-hate";
+
+                $('#' + key + button).addClass('pressed');
+            }
         }
-
     }
 
     createFacebookShareButton();
