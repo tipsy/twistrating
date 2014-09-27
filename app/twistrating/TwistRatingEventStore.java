@@ -3,7 +3,7 @@ package twistrating;
 import com.avaje.ebean.Ebean;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import play.Logger;
-import twistrating.commands.CreateTwistCommand;
+import twistrating.commands.ChangeTwistRatingCommand;
 import twistrating.commands.RateTwistCommand;
 import twistrating.models.providers.TwistProvider;
 import twistrating.views.Twist;
@@ -20,8 +20,11 @@ public class TwistRatingEventStore implements TwistRating {
     }
 
     public void rateTwist(String twistId, int rating) {
-        commandGateway.send(new CreateTwistCommand(twistId));
         commandGateway.send(new RateTwistCommand(twistId, rating));
+    }
+
+    public void changeTwistRating(String twistId, int previousRating, int newRating) {
+        commandGateway.send(new ChangeTwistRatingCommand(twistId, previousRating, newRating));
     }
 
     public List<Twist> getTwists() {

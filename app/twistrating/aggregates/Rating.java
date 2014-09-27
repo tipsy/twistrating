@@ -4,10 +4,12 @@ import org.axonframework.commandhandling.annotation.CommandHandler;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.axonframework.eventsourcing.annotation.AbstractAnnotatedAggregateRoot;
 import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
+import twistrating.commands.ChangeTwistRatingCommand;
 import twistrating.commands.CreateTwistCommand;
 import twistrating.commands.RateTwistCommand;
 import twistrating.events.TwistCreatedEvent;
 import twistrating.events.TwistRatedEvent;
+import twistrating.events.TwistRatingChangedEvent;
 
 public class Rating extends AbstractAnnotatedAggregateRoot {
     @AggregateIdentifier
@@ -25,6 +27,12 @@ public class Rating extends AbstractAnnotatedAggregateRoot {
     public void rateTwist(RateTwistCommand command) {
         // TODO: Validate command
         apply(new TwistRatedEvent(command.getTwistId(), command.getRating()));
+    }
+
+    @CommandHandler
+    public void changeTwistRating(ChangeTwistRatingCommand command) {
+        // TODO: Validate command
+        apply(new TwistRatingChangedEvent(command.getTwistId(), command.getPreviousRating(), command.getNewRating()));
     }
 
     @EventHandler

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.google.inject.Inject;
-import play.api.libs.json.JsObject;
 import play.libs.Json;
 import play.mvc.BodyParser;
 import play.mvc.Controller;
@@ -74,13 +73,13 @@ public class Application extends Controller {
         JsonNode ratings = Json.parse(session("ratings"));
         int previousRating = ratings.get(twistId).asInt();
 
-        if (rating != previousRating){
+            if (rating != previousRating){
             //Todo: cancel previous vote
             System.out.println("RATE " + twistId + " : " + rating);
-            twistRating.rateTwist(twistId, rating);
 
             ((ObjectNode)ratings).put(twistId, rating);
             session("ratings", Json.stringify(ratings));
+            twistRating.changeTwistRating(twistId, previousRating, rating);
         }
     }
 
