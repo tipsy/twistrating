@@ -18,8 +18,9 @@ import org.axonframework.eventstore.fs.SimpleEventFileResolver;
 import play.Application;
 import play.GlobalSettings;
 import play.Logger;
-import play.api.mvc.RequestHeader;
+import play.libs.F;
 import play.libs.F.Promise;
+import play.mvc.Http;
 import play.mvc.Result;
 import twistrating.TwistRating;
 import twistrating.TwistRatingEventStore;
@@ -41,8 +42,10 @@ public class Global extends GlobalSettings {
         return injector.getInstance(controllerClass);
     }
 
-    public Promise<Result> onHandlerNotFound(RequestHeader request) {
-        return Promise.<Result>pure(notFound(
+    @Override
+    public F.Promise<Result> onHandlerNotFound(Http.RequestHeader request) {
+        //if(isDev) return super.onHandlerNotFound(request);
+        return F.Promise.<Result>pure(notFound(
                 views.html.notFound.render(request.uri())
         ));
     }
