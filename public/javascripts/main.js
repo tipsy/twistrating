@@ -208,6 +208,10 @@ $(function () {
             });
     }
 
+    function isInternetExplorer(){
+        return navigator.userAgent.indexOf('MSIE') !== -1 || navigator.appVersion.indexOf('Trident/') > 0;
+    }
+
     function startLiveUpdate() {
         setInterval(function () {  //update opened twists every 5 seconds
             $(".twist-wrapper").each(function () {
@@ -229,6 +233,8 @@ $(function () {
     createFacebookShareButton();
     createCopyLinkButton();
     downloadTwistsAndBuildSite();
-    startLiveUpdate()
+    if ( ! isInternetExplorer()){
+        startLiveUpdate()
+    }
 
 });
